@@ -2,8 +2,13 @@ class UsersController < ApplicationController
     wrap_parameters format: []
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    skip_before_action :authorized, only: [:create, :show]
+    skip_before_action :authorized, only: [:index, :create, :show, :update]
 
+
+    def index 
+        user = User.all
+        render json: user
+    end
 
     def create 
         user = User.create(user_params)
@@ -20,6 +25,26 @@ class UsersController < ApplicationController
         render json: current_user 
     end
 
+    def update 
+        user = User.find_by(id: params[:id])
+        if user
+            user.update(user_params)
+            render json: user
+        else 
+            render json: { error: "User not found" }, status: :not_found
+        end
+    end
+
+    def destroy 
+        user = User.find_by(id: params[:id])
+        if user 
+            user.destroy 
+            head :no_content
+        else 
+            render json: {error: "User not found"}, status: :not_found 
+        end
+    end
+
     private 
 
     def render_unprocessable_entity(invalid)
@@ -27,7 +52,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit(:username, :password, :name, :email)
+        params.permit( :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in)
     end
     
 end

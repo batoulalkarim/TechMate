@@ -11,10 +11,11 @@ function NavBar({setUser, user}) {
 
     return(
         <div>
-            <p>{user.name}</p>
             <nav>
+                <span>{user.name}</span>
                 <Link to="/editaccount">Edit Account</Link>
                 <Link to="/browse">Browse</Link>
+                <Link to="/">Home</Link>
                 <button onClick={handleLogout}>Logout</button>
             </nav>
         </div>
