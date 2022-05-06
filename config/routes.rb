@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#show"
   post "/users", to: "users#create"
   delete "/logout", to: "sessions#destroy"
+  patch "/users/likes/:id", to: "users#update_likes"
   get "/me", to: "users#me"
   post "/matches", to: "matches#create"
   post "/users/:id", to: "users#update"

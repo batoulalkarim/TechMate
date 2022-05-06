@@ -50,13 +50,14 @@ class UsersController < ApplicationController
         end
     end
 
-    def requestors 
-        user = User.find_by!(id: params[:id])
-        if user
-            render json: user.requestors 
+
+    def update_likes 
+        user = User.find_by(id: params[:id])
+        if user 
+            #add selected user id to likes array 
         else 
-            render json: { error: "User not found"}, status: :not_found
-        end
+            render json: {error: "User not found"}, status: :not_found 
+        end 
     end
 
     private 

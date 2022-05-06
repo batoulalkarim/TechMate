@@ -47,7 +47,28 @@ function App() {
   }
 
   function handleRight(user, selectedUser){
-    console.log(user, selectedUser)
+    createMatch(user, selectedUser)
+    addSelectedUserToCurrentUserLikes(user, selectedUser)
+  }
+
+  function addSelectedUserToCurrentUserLikes(user, selectedUser){
+    const url =`/users/likes/${user.id}`
+    const settings = {
+      method: 'PATCH',
+      headers: {
+        "Content-Type" : "application/json",
+      },
+      body: JSON.stringify({
+        selectedUserId: selectedUser.id  
+      })
+    }
+    fetch(url, settings)
+    .then((res) => console.loc(res))
+    .catch(console.error)
+  }
+
+
+  function createMatch(user, selectedUser) {
     const match = {
       requestor_id: user.id,
       receiver_id: selectedUser.id,
