@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import LoginToggle from './components/LoginToggle';
-import NavBar from './components/NavBar';
-import EditAccount from './components/EditAccount';
-import Home from './components/Home';
+import TinderCards from './components/TinderCards'
+import SwipeButtons from './components/SwipeButtons';
+import Messages from './components/Messages';
+import MessagesScreen from './components/MessagesScreen';
+// import NavBar from './components/NavBar';
+// import EditAccount from './components/EditAccount';
+// import Home from './components/Home';
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
-import CreateAccount from './components/CreateAccount';
+import Header from './components/Header';
+// import CreateAccount from './components/CreateAccount';
 
 
 function App() {
@@ -25,11 +30,11 @@ function App() {
     <>
    
     <BrowserRouter>
-      <NavBar setUser={setUser} user={user} />
+      {/* <NavBar setUser={setUser} user={user} /> */}
       <Routes>
-        <Route path="/" element={<Home user={user}/>} />
-        <Route path="/createaccount" element={<CreateAccount user={user}/>} /> 
-        <Route path="/editaccount" element={<EditAccount />} />
+        <Route path="/chat/:user" element={<><Header backButton="/chat"/><MessagesScreen /></>} />
+        <Route exact path="/chat" element={<><Header backButton="/" /><Messages /></>} />
+        <Route exact path="/" element={<><Header /><TinderCards /><SwipeButtons /></> } />
       </Routes>
     </BrowserRouter>
     </>

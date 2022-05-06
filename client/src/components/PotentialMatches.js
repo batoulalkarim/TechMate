@@ -9,9 +9,6 @@ function PotentialMatches({users, onMatchRequest, onDelete}){
 
     const currentIndexRef = useRef(currentIndex)
 
-    // const alreadyRemoved = []
-    // let charactersState = users
-
     const childRefs = useMemo(
         () =>
           Array(users.length)
@@ -24,10 +21,6 @@ function PotentialMatches({users, onMatchRequest, onDelete}){
         setCurrentIndex(val)
         currentIndexRef.current = val
       }
-    
-    
-      const canSwipe = currentIndex >= 0
-
       const swiped = (direction, nameToDelete, index) => {
         setLastDirection(direction)
         updateCurrentIndex(index - 1)
@@ -42,15 +35,11 @@ function PotentialMatches({users, onMatchRequest, onDelete}){
         // it happens multiple outOfFrame events are queued and the card disappear
         // during latest swipes. Only the last outOfFrame event should be considered valid
       }
-      const swipe = async (dir) => {
-        if (canSwipe && currentIndex < users.length) {
-          await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-        }
-      }
+
     // const cards = users.map((user) => {
     //     return(<UserCard key={user.id} user={user} onMatchRequest={onMatchRequest} onDelete={onDelete} />)
     // })
-
+     
    
 
     return(
@@ -77,8 +66,6 @@ function PotentialMatches({users, onMatchRequest, onDelete}){
             ))}
         </div>
         <div className="buttons">
-        <button onClick={() => swipe("left")}>Swipe left!</button>
-        <button onClick={() => swipe("right")}>Swipe right!</button>
       </div>
       {lastDirection ? (
         <h2 key={lastDirection} className="infoText">

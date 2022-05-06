@@ -66,7 +66,7 @@ function Home({user, onDelete, onAddToMatchRequests}) {
     function handleAddToMatchList(user){
         const foundIndex = requestMatchList.findIndex(item => user.id === item.id);
         if(foundIndex === -1) {
-            setRequestMatchList([...requestMatchList, user])
+            setRequestMatchList([...requestMatchList, user.name])
         } else {
             console.log("test")
         }
@@ -113,8 +113,8 @@ function Home({user, onDelete, onAddToMatchRequests}) {
                         else return null;
                         }
                     )
-         : null 
-        }
+                    : null 
+                    }
                     <p>test</p>
                 </div>
                

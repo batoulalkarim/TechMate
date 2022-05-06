@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#show"
   post "/users", to: "users#create"
   delete "/logout", to: "sessions#destroy"
-  get "/me", to: "users#show"
+  get "/me", to: "users#me"
   post "/users/:id", to: "users#update"
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy"

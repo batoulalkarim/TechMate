@@ -1,4 +1,171 @@
-.userhomebody {
+* {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f9f9f9;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.header_icon {
+  padding: 20px;
+}
+
+.card {
+  position: relative;
+  width: 600px;
+  padding: 20px;
+  max-width: 85vh;
+  height: 50vh;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3)
+}
+
+.cardcontainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+
+}
+
+.swipe {
+  position: absolute;
+}
+
+.card > h3 {
+  position: absolute;
+  bottom: 10px;
+  color: white;
+}
+
+.swipebuttons {
+  position: fixed;
+  bottom: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.swipebuttons .MuiIconButton-root {
+  background-color: white;
+  box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important;
+}
+
+.swipebutton_repeat {
+  padding: 3vw !important;
+  color: #f5b748 !important;
+}
+
+.swipebutton_left {
+  padding: 3vw !important;
+  color: #ec5e6f !important;
+}
+
+.swipebutton_star {
+  padding: 3vw !important;
+  color: #62b4f9 !important;
+}
+
+.swipebutton_right {
+  padding: 3vw !important;
+  color: #76e2b3 !important;
+}
+
+.swipebutton_lightening {
+  padding: 3vw !important;
+  color: #915dd1 !important;
+}
+.chat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 70px;
+  border-bottom: 1px solid #fafafa;
+}
+.chat_details {
+  flex:1;
+}
+.chat_image {
+  margin-right: 20px;
+}
+
+.chat_timestamps {
+  color: lightgray;
+}
+
+.chat_details > p {
+  color: gray;
+}
+.messageScreen_message {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.messageScreen_text {
+  margin-left: 10px;
+  background-color: lightgray;
+  padding: 15px;
+  border-radius: 20px;;
+}
+
+.messageScreen_timestamp {
+  text-align: center;
+  padding: 20px; 
+  color: gray;
+}
+
+.messageScreen_textUser {
+  margin-left: auto;
+  background-color: #29b3cd;
+  padding: 15px; 
+  border-radius: 20px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.messageScreen_inputForm {
+  display: flex;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid lightgray;
+}
+
+.messageScreen_inputField {
+  flex: 1;
+  padding: 10px;
+  border: none;
+}
+
+.messageScreen_inputButton {
+  border: none;
+  margin-right: 20px;
+  background-color: white;
+  font-weight: bolder;
+  color: #fe3d71;
+}
+
+
+
+
+/* .chats */
+
+/* .userhomebody {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -31,17 +198,17 @@
   .userright{
     margin-left: 20%;
   }
-  
-  #root {
+   */
+  /* #root {
     text-align: center;
-    /* display: flex; */
-    /* justify-content: center; */
+    display: flex;
+    justify-content: center;
     width: 100vw;
     min-height: 100vh;
     overflow: hidden;
-    /* background: linear-gradient(#fff, #999); */
+    background: linear-gradient(#fff, #999);
     background: linear-gradient(#e66465, #9198e5);
-  }
+  } */
   
   /* #root > div {
     display: flex;
@@ -65,7 +232,7 @@
     margin: 5px;
   } */
   
-  h1 {
+  /* h1 {
     font-family: "Damion", cursive;
     color: #fff;
     text-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.3);
@@ -129,7 +296,7 @@
   .buttons {
     margin: 20px;
     margin-top: 500px;
-    /* display: flex; */
+    display: flex;
   }
   
   .buttons button {
@@ -173,4 +340,4 @@
     100% {
       transform: scale(1, 1);
     }
-  }
+  } */
