@@ -38,29 +38,43 @@ function App() {
   }, [])
 
 
-  function handleaddtorequestsfromme(){
-
-  }
-
-  function handlereject(user){
-    const foundIndex = users.findIndex(item => user.id === item.id);
-    if (foundIndex === -1) {
-        console.log("User isn't in your matches")
-    } else {
-        const copyArray = [...users];
-        copyArray.splice(foundIndex, 1);
-
-        setUsers(copyArray)
+  function onSwipe(direction, selectedUser){
+    if(direction === 'right') {
+      handleRight(user, selectedUser)
+    } else if (direction === 'left') {
+      handleLeft()
     }
-    fetch(`http://localhost:3000/users/${user.id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-
-    console.log("You rejected " + user.name);
   }
+
+  function handleRight(user, selectedUser){
+    console.log(user, selectedUser)
+    const match = {
+      requestor_id: user.id,
+      receiver_id: selectedUser.id,
+      status: "pending"
+    }
+    const url = '/matches'
+    const settings = {
+      method:"POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(match)
+    }
+    fetch(url, settings)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch(console.error)
+  }
+
+
+  function handleLeft(){
+    console.log("left")
+  }
+
+
+
 
   if(!user) return <BrowserRouter><LoginToggle setUser={setUser} /></BrowserRouter>
 
@@ -76,7 +90,7 @@ function App() {
         <Route path="/chat/:user" element={<><Header backButton="/chat"/><MessagesScreen /></>} />
         <Route exact path="/chat" element={<><Header backButton="/" /><Messages /></>} />
         <Route path="/myrequests" element={<><PersonalHeader /><RequestedMatches /></>} />
-        <Route exact path="/" element={<><Header /><TinderCards onSwipeRight={handleaddtorequestsfromme} onSwipeLeft={handlereject}/><SwipeButtons users={users} setUsers={setUsers}/></> } />
+        <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} /><SwipeButtons users={users} setUsers={setUsers}/></> } />
       </Routes>
     </BrowserRouter>
     </>

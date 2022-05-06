@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2022_05_04_013819) do
     t.string "list_of_matches"
     t.string "images"
     t.string "list_of_messages"
+    t.string "dislikes"
+    t.string "likes"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

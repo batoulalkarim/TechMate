@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :matches, only: [:index, :show, :create]
 
-  resources :matches, only: [:show, :index] do 
+  resources :matches, only: [:show, :index, :create] do 
     resources :users, only: [:show, :index]
   end 
 
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/users", to: "users#create"
   delete "/logout", to: "sessions#destroy"
   get "/me", to: "users#me"
+  post "/matches", to: "matches#create"
   post "/users/:id", to: "users#update"
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy"

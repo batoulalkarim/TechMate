@@ -3,7 +3,7 @@ import TinderCard from 'react-tinder-card';
 
 
 
-function TinderCards({onSwipeLeft, onSwipeRight}) {
+function TinderCards({onSwipe, currentUser}) {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -11,11 +11,12 @@ function TinderCards({onSwipeLeft, onSwipeRight}) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            setUsers(data)
+            const filtered = data.filter((cards) => cards.id !== currentUser.id)
+            setUsers(filtered)
         })
     },[])
 
-
+  
 
     return(
         <div >
@@ -24,8 +25,7 @@ function TinderCards({onSwipeLeft, onSwipeRight}) {
               return  <TinderCard
                 className="swipe"
                 key={user.name}
-                onSwipeRight={onSwipeRight}
-                onSwipeLeft={onSwipeLeft}
+                onSwipe={(direction) => onSwipe(direction, user)}
                 preventSwipe={['up', 'down']}
                 //on right swipe create match and set status to pending
                 >

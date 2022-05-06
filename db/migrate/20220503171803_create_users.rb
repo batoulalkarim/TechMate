@@ -15,7 +15,8 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :list_of_matches
       t.string :images
       t.string :list_of_messages
-
+      t.string :dislikes 
+      t.string :likes 
   
     end
   end

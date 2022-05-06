@@ -53,7 +53,7 @@ function Home({user, onDelete, onAddToMatchRequests}) {
 
             setUsers(copyArray)
         }
-        fetch(`http://localhost:3000/users/${user_id}`, {
+        fetch(`http://localhost:3000/users/${user.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
