@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useParams} from 'react';
 import {Link, useParams } from 'react-router-dom';
 import UserCard from './UserCard';
 import PotentialMatches from './PotentialMatches';
@@ -41,7 +41,7 @@ function Home({user, onDelete, onAddToMatchRequests}) {
         return((user.name.toLowerCase().includes(search.toLowerCase())))
     })
 
-
+    let {id} = useParams()
     function handleRejectThisUser(user){
         // event.stopPropagation();
         const foundIndex = users.findIndex(item => user.id === item.id);
@@ -53,7 +53,7 @@ function Home({user, onDelete, onAddToMatchRequests}) {
 
             setUsers(copyArray)
         }
-        fetch(`http://localhost:3000/users/${user.id}`, {
+        fetch(`http://localhost:3000/users/${user_id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

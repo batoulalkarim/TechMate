@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
-// import SwipeButtons from './SwipeButtons';
 
 
-function TinderCards() {
+
+function TinderCards({onSwipeLeft, onSwipeRight}) {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
@@ -15,6 +15,8 @@ function TinderCards() {
         })
     },[])
 
+
+
     return(
         <div >
             <div className="cardcontainer">
@@ -22,7 +24,10 @@ function TinderCards() {
               return  <TinderCard
                 className="swipe"
                 key={user.name}
+                onSwipeRight={onSwipeRight}
+                onSwipeLeft={onSwipeLeft}
                 preventSwipe={['up', 'down']}
+                //on right swipe create match and set status to pending
                 >
                     <div 
                     style={{backgroundImage: `url(${user.profilepic})`}}
@@ -33,7 +38,6 @@ function TinderCards() {
                 </TinderCard>
 })}
         </div>
-        {/* <SwipeButtons /> */}
         </div>
     )
 }

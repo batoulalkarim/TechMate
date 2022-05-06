@@ -9,6 +9,21 @@
   align-items: center;
 }
 
+.personalheader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f9f9f9;
+  align-items: center;
+}
+
+.matches_container{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f9f9f9;
+  align-items: center;
+  margin: 20px;
+}
+
 .logo {
   height: 40px;
   object-fit: contain;
@@ -28,6 +43,11 @@
   background-size: cover;
   background-position: center;
   box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3)
+}
+.accountdetails_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
 }
 
 .cardcontainer {
@@ -160,7 +180,31 @@ a {
   color: #fe3d71;
 }
 
+.accountdetails_buttons {
+  border: none;
+  background-color: white;
+  font-weight: bolder;
+  color: #fe3d71;
+  font-size: 15px;
+}
 
+.accountdetails_item{
+  text-align: center;
+}
+.accountdetails_input{
+  padding: 10px;
+  border-radius: 20px;
+}
+.accountdetails_right {
+  margin-left: 10vh;
+}
+.accountdetails_button {
+  margin-left: 50%;
+  border: none;
+  padding: 15px;
+  font-weight: bolder;
+  border-radius: 20px;
+}
 
 
 /* .chats */

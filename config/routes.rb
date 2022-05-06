@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :update, :destroy]
   resources :matches, only: [:index, :show, :create]
 
+  resources :matches, only: [:show, :index] do 
+    resources :users, only: [:show, :index]
+  end 
+
+
   post "/login", to: "sessions#show"
   post "/users", to: "users#create"
   delete "/logout", to: "sessions#destroy"
@@ -13,5 +18,6 @@ Rails.application.routes.draw do
   post "/users/:id", to: "users#update"
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy"
+  post "/users/:id/requestors", to: "users#requestors"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

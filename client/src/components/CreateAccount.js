@@ -66,45 +66,55 @@ function CreateAccount({user}){
     }
 
 return(
-   <div>
-       <div>
-       <h3>Upload a profile pic</h3>
+    <div>
+   <div className="accountdetails_container">
+           <div className="accountdetails_left">
+       <h3>Update Your Profile Pic</h3>
        <form onSubmit={(e) => handleSubmit(e)} encType='multipart/form-data'>
-           <input type="file" name="image_path"  onChange={handleChange} />
-           <button onClick= {() => uploadImage()}>Upload</button>
+           <input type="file" name="image_path"  onChange={handleChange}/>
+           <button onClick= {() => uploadImage() } className="accountdetails_buttons">Upload</button>
        <br />
        <br />
-       <label>When's your Birthday?
+       <div className="accountdetails_item">
+       <label>Birthday
         <br />
-       <input type="date" id="bday" name="birthdate" value={birthdate} max="2004-01-01" onChange={(e) => setBirthdate(e.target.value)} />
+       <input className="accountdetails_input" type="date" id="bday" name="birthdate" value={birthdate} max="2004-01-01" onChange={(e) => setBirthdate(e.target.value)} />
        <br />
        </label>
+       </div>
+       <div className="accountdetails_item">
        <label>
         <br />
-        What city are you in?
+        Location
         <br />
-        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
+        <input className="accountdetails_input" type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
         </label>
+        </div>
+        <div className="accountdetails_item">
         <br />
         <label>
         <br />
         What do you do for a living? 
         <br />
-        <input type="text" value={job} onChange={(e) => setJob(e.target.value)} />
+        <input type="text" className="accountdetails_input" value={job} onChange={(e) => setJob(e.target.value)} />
         </label>
+        </div>
         <br />
+        <div className="accountdetails_item">
         <br />
         <label>
         How old are you? 
         <br />
-        <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+        <input type="text" className="accountdetails_input" value={age} onChange={(e) => setAge(e.target.value)} />
         </label>
+        </div>
          <br />
          <br />
+         <div className="accountdetails_item">
          <label>Show me</label>
         <br />
         
-        <select value={interested_in} onChange={(e) => setInterested_in(e.target.value)}>
+        <select className="accountdetails_input"  value={interested_in} onChange={(e) => setInterested_in(e.target.value)}>
             <option value="select an option">Select an option</option>
             <option value="men">Men</option>
             <option value='women'>Women</option>
@@ -112,21 +122,28 @@ return(
         </select>  
         <br /> 
         <br /> 
+        </div>
+        <div className="accountdetails_item">
         <label>
             What do you want people to know about you?
             <br />
-            <textarea value={bio} rows="4" cols="40" onChange={(e) => setBio(e.target.value)}></textarea>
+            <textarea className="accountdetails_input" value={bio} rows="4" cols="40" onChange={(e) => setBio(e.target.value)}></textarea>
         </label>
+        </div>
+        
         <br />
         <br />
-        <Link to="/">
-            <button onClick={handleSubmit}>Save</button>
-        </Link>
         </form>
         </div>
-        <div>
-             
+        <div className="accountdetails_right">
+             <h1>upload rest of pictures here</h1>
         </div>
+   </div>
+   
+        <Link to="/">
+            <button className="accountdetails_button" onClick={handleSubmit}>Save</button>
+        </Link>
+       
    </div>
 )
   

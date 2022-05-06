@@ -1,17 +1,24 @@
 import React from 'react';
-import UserCard from './UserCard';
+import { Link } from 'react-router-dom';
 
-function RequestedMatches({ requestMatchList, onDelete }){
 
-    const userCards = requestMatchList.map((user) => {
-        return <UserCard key={user.id} user={user} onDelete={onDelete} />
-    })
+
+function RequestedMatches(){
     return(
         <div>
-            <div>
-                {userCards}
-            </div>
+        <div className="matches_container">
+            <Link to="/pendingrequests">
+                Pending Requests
+            </Link>
+            <Link to="/acceptedmatches">
+                Accepted Matches
+            </Link>
+            <Link to="/requestsreceived">
+                My Requests
+            </Link>
         </div>
+        
+         </div>
     )
 }
 

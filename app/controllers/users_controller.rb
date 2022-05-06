@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     wrap_parameters format: []
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    skip_before_action :authorized, only: [:index, :create, :show, :update]
+    skip_before_action :authorized, only: [:index, :create, :show, :update, :destroy]
 
 
     def index 
@@ -41,12 +41,21 @@ class UsersController < ApplicationController
     end
 
     def destroy 
-        user = User.find_by(id: params[:id])
+        user = User.find_by!(id: params[:id])
         if user 
             user.destroy 
             head :no_content
         else 
             render json: {error: "User not found"}, status: :not_found 
+        end
+    end
+
+    def requestors 
+        user = User.find_by!(id: params[:id])
+        if user
+            render json: user.requestors 
+        else 
+            render json: { error: "User not found"}, status: :not_found
         end
     end
 

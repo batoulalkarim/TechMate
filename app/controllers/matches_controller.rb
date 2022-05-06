@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
     
     def index 
         match = Match.all
-        render json: match
+        render json: match, include: [:requestor, :receiver] 
     end
 
     def show 

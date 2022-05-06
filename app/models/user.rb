@@ -6,5 +6,5 @@ class User < ApplicationRecord
     has_many :receivers, through: :requestors 
 
     has_secure_password
-  
+
 end
