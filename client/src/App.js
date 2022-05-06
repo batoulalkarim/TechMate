@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:3000/matches/')
+    fetch(`http://localhost:3000/matches`)
     .then(res => res.json())
     .then(data => {
       console.log(data)
@@ -40,39 +40,20 @@ function App() {
 
   function onSwipe(direction, selectedUser){
     if(direction === 'right') {
-      handleRight(user, selectedUser)
+      createMatch(user, selectedUser, true)
     } else if (direction === 'left') {
-      handleLeft()
+      createMatch(user, selectedUser, false)
     }
   }
 
-  function handleRight(user, selectedUser){
-    createMatch(user, selectedUser)
-    addSelectedUserToCurrentUserLikes(user, selectedUser)
-  }
+ 
 
-  function addSelectedUserToCurrentUserLikes(user, selectedUser){
-    const url =`/users/likes/${user.id}`
-    const settings = {
-      method: 'PATCH',
-      headers: {
-        "Content-Type" : "application/json",
-      },
-      body: JSON.stringify({
-        selectedUserId: selectedUser.id  
-      })
-    }
-    fetch(url, settings)
-    .then((res) => console.loc(res))
-    .catch(console.error)
-  }
-
-
-  function createMatch(user, selectedUser) {
+  function createMatch(user, selectedUser, likes) {
     const match = {
       requestor_id: user.id,
       receiver_id: selectedUser.id,
-      status: "pending"
+      status: "pending",
+      likes: likes,
     }
     const url = '/matches'
     const settings = {
@@ -90,9 +71,6 @@ function App() {
   }
 
 
-  function handleLeft(){
-    console.log("left")
-  }
 
 
 
@@ -106,7 +84,7 @@ function App() {
       <Routes>
       <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches /></>} />
       <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe /></>} />
-        <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests /></>} />
+        <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests currentUser={user} /></>} />
         <Route path="/createaccount" element={<><PersonalHeader setUser={setUser} /><CreateAccount /></>} />
         <Route path="/chat/:user" element={<><Header backButton="/chat"/><MessagesScreen /></>} />
         <Route exact path="/chat" element={<><Header backButton="/" /><Messages /></>} />

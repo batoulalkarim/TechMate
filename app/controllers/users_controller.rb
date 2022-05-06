@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     wrap_parameters format: []
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-    skip_before_action :authorized, only: [:index, :create, :show, :update, :destroy]
+    skip_before_action :authorized, only: [:index, :create, :show, :update, :update_likes, :destroy]
 
 
     def index 
@@ -70,4 +70,8 @@ class UsersController < ApplicationController
         params.permit( :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in)
     end
     
+    def selected_user_params 
+        params.permit(:id, :selectedUserId)
+    end
+
 end

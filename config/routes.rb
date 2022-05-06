@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   
   resources :users, only: [:index, :show, :create, :update, :destroy]
-  resources :matches, only: [:index, :show, :create]
+  resources :matches, only: [:index, :show, :create, :show_pending_requests]
 
   resources :matches, only: [:show, :index, :create] do 
     resources :users, only: [:show, :index]
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch "/users/likes/:id", to: "users#update_likes"
   get "/me", to: "users#me"
   post "/matches", to: "matches#create"
+  get "/matches/user/:user_id", to: "matches#show_pending_requests"
   post "/users/:id", to: "users#update"
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy"
