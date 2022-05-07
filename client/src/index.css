@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  overflow: scroll;
 }
 
 .header {
@@ -73,6 +74,7 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+ 
 }
 
 .swipebuttons .MuiIconButton-root {
@@ -126,6 +128,7 @@
 .chat_details > p {
   color: gray;
 }
+
 .messageScreen_message {
   display: flex;
   align-items: center;
@@ -175,6 +178,40 @@ a {
 .messageScreen_inputButton {
   border: none;
   margin-right: 20px;
+  background-color: white;
+  font-weight: bolder;
+  color: #fe3d71;
+}
+
+
+.pendingrequests_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  padding: 20px;
+
+}
+.center{
+  text-align: center;
+}
+.pendingrequests_item {
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+}
+
+.pendingrequests_button {
+  /* display:inherit; */
+  position: relative;
+  padding: 10px;
+  margin-right: 30px;
+  margin-left: auto;
+  border: none;
   background-color: white;
   font-weight: bolder;
   color: #fe3d71;

@@ -13,16 +13,34 @@ function PendingRequests({ currentUser }) {
 					setPendingRequests(data)
 				})
 	}, [currentUser])
+
+	function handleRemoveRequest(currentUser){
+		const foundIndex = pendingRequests.findIndex(item => currentUser.id === item.id )
+		if(foundIndex === 1){
+			console.log("You didn't request them")
+		} else {
+			console.log(currentUser)
+			const copyArray = [...pendingRequests]
+			copyArray.splice(foundIndex, 1);
+
+			setPendingRequests(copyArray)
+		}
+	}
+
+
 	return (
-		<div>
-			<h1>Pending requests go here</h1>
+		<div className="pendingrequests_container">
+			<h1 className="center">Pending Requests(people you swiped right on)</h1>
 			{pendingRequests.map((pendingRequest, key) => (
 				<>
-					<div>
+					<div key={pendingRequest.id} className="pendingrequests_item">
 						{key} | {pendingRequest.receiver_id} |
 						{pendingRequest.requestor_id} | {pendingRequest.status}
+						
 					</div>
-				</>
+					<button className="pendingrequests_button" onClick={handleRemoveRequest}>Cancel Request</button>
+					
+				</> 
 			))}
 		</div>
 	)
