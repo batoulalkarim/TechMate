@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     end
 
     def update 
-        user = User.find_by(id: params[:id])
+        user = User.find_by(params[:user_id])
+        # user.images.attach(params[:images])
         if user
             user.update(user_params)
             render json: user
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit( :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in)
+        params.require(:images).permit([:images, :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in])
     end
     
     def selected_user_params 

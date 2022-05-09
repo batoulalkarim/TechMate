@@ -6,5 +6,6 @@ class User < ApplicationRecord
     has_many :receivers, through: :requestors 
 
     has_secure_password
+    # has_many_attached :images
 
 end

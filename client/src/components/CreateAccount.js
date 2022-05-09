@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import UploadImages from './UploadImages';
 
 
 
-function CreateAccount({user}){
+function CreateAccount({currentUser, setUser}){
     const [job, setJob] = useState('')
     const [birthdate, setBirthdate] = useState('');
     const [location, setLocation] = useState('');
@@ -25,9 +26,10 @@ function CreateAccount({user}){
             location,
             age,
             bio,
-            interested_in
+            interested_in,
+            images
         }
-        fetch(`http://localhost:3000/users/${user.id}`, {
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json",
@@ -37,7 +39,7 @@ function CreateAccount({user}){
         .then(res => {
             if(res.ok){
                 console.log(profile)
-                res.json().then(setProfile(profile))
+                res.json().then(setUser(profile))
             } else {
                 res.json().then(e => setErrors(Object.entries(e.error).flat()))
             }
@@ -47,7 +49,7 @@ function CreateAccount({user}){
     function uploadImage(){
         const formData = new FormData();
         formData.append('profilepic', setProfilepic)
-        fetch(`http://localhost:3000/users/${user.id}`, {
+        fetch(`http://localhost:3000/users/${currentUser.id}`, {
             method: "PATCH",
             body: formData
         })
@@ -137,6 +139,7 @@ return(
         </div>
         <div className="accountdetails_right">
              <h1>upload rest of pictures here</h1>
+             <UploadImages  setImages={setImages} images={images} />
         </div>
    </div>
    

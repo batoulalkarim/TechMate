@@ -88,7 +88,7 @@ function App() {
     }
 
   function createMatch(user, selectedUser, likes) {
-    const newmatch = {
+    const match = {
       requestor_id: user.id,
       receiver_id: selectedUser.id,
       status: "pending",
@@ -100,7 +100,7 @@ function App() {
       headers: {
         "Content-Type" : "application/json"
       },
-      body: JSON.stringify(newmatch)
+      body: JSON.stringify(match)
     }
     fetch(url, settings)
     .then((res) => {
@@ -148,10 +148,10 @@ function App() {
    
     <BrowserRouter>
       <Routes>
-      <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches currentUser={user} /></>} />
+      <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches currentUser={user} user={user} /></>} />
       <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe currentUser={user} declineUser={declineUser} approveUser={approveUser} /></>} />
         <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests currentUser={user} /></>} />
-        <Route path="/createaccount" element={<><PersonalHeader setUser={setUser} /><CreateAccount /></>} />
+        <Route path="/createaccount" element={<><PersonalHeader setUser={setUser} /><CreateAccount setUser={setUser} currentUser={user}/></>} />
         <Route path="/chat/:user" element={<><Header backButton="/chat"/><MessagesScreen /></>} />
         <Route exact path="/chat" element={<><Header backButton="/" /><Messages /></>} />
         <Route path="/myrequests" element={<><PersonalHeader /><RequestedMatches /></>} />

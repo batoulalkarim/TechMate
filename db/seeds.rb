@@ -19,16 +19,36 @@ tunisia = User.create!(name: "Tunisia Artope", username: "tunisia", password: "1
 scarlett = User.create!(name: "Scarlette Johansson", username: "scarlett", password: "123", email: "scarlette@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Queens", profilepic: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Goldene_Kamera_2012_-_Scarlett_Johansson_3_%28cropped%2C_2%29.JPG", bio: "A lot of people wouldn't guess this about me, but I've been a backend developer for over 10 years! Ready to meet someone like me.", age: 29, interested_in: "Men", list_of_matches: [], images: [], list_of_messages: [])
 johnny = User.create!(name: "Johnny Depp", username: "johnny", password: "123", email: "johnny@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Soho", profilepic: "https://media.npr.org/assets/img/2020/11/06/gettyimages-1278081494-36704836ea1e6f5fedbc438e910ebb13a7b0aee1-s1100-c50.jpg", bio: "Don't ask me about Amber.", age: 30, interested_in: "Women", list_of_matches: [], images: [], list_of_messages: [])
 mindy = User.create!(name: "Mindy Kaling", username: "mindy", password: "123", email: "mindy@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Manhattan", profilepic: "https://m.media-amazon.com/images/M/MV5BNzQ2OTUzNDU1MF5BMl5BanBnXkFtZTcwODQ2MTYyNw@@._V1_.jpg", bio: "My boyfriend Ryan and I just broke up so i'm looking for someone to help make him jealous. Will pay you!", age: 30, interested_in: "Men", list_of_matches: [], images: [], list_of_messages: [])
+bill = User.create!(name: "Bill Gates", username: "bill", password: "123", email: "bill@example.com", job: "Computter Programmer and Entrepeneur", birthdate: "08/28/1955", location: "Private", profilepic: "https://i.guim.co.uk/img/media/43de83936de69e99c2251f371442f9cb00cbbedd/0_1978_8700_6977/master/8700.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=b690ea62c0c07f273544e1771f33d4a6", bio: "Life isn't as long as well all thought it would be. I'm looking to set someone up for the rest of theirs!", age: 66,  interested_in: "Women", list_of_matches: [], images: [], list_of_messages: [] )
+mark = User.create!(name: "Mark Zuckerburg", username: "mark", password: "123", email: "mark@example.com", job: "CEO", birthdate: "08/01/1997", location: "Manhattan", profilepic: "https://www.refinery29.com/images/10561947.jpg?format=pjpg&auto=webp&resize-filter=lanczos2&quality=50&sharpen=a3%2Cr3%2Ct0&optimize=low&width=960", bio: "You either love me or you hate me, but you can't deny my legacy is infinite", age: 37, interested_in: "Women", list_of_matches: [], images: [], list_of_messages:[])
+dean = User.create!(name: "Dean Scott", username: "dean", password: "123", email: "dean@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Manhattan", profilepic: "https://ca.slack-edge.com/T02MD9XTF-U0192F0QZNG-28dc60c3042f-512", bio: "Hey whats up guys it's ya boy Dean, I'm super into sneakers and very knowledgable about fashion. I need a girl that's , as smart AND fly as me ;)", age: 33, interested_in: "Women", list_of_matches: [], images: [], list_of_messages:[])
+jack = User.create!(name: "Jack Albeck", username: "jack", password: "123", email: "jack@example.com", job: "Data Scientist", birthdate: "08/01/1997", location: "Brooklyn", profilepic: "https://img.dtcn.com/image/themanual/smiling-businessman-with-brown-bag-walking-in-city.jpg", bio: "I'm just a normal dude, I don't really know what to say here!", age: 24, interested_in: "Women", list_of_matches: [], images: [], list_of_messages: [])
+mike = User.create!(name: "Mike Wazowski", username: "mike", password: "123", email: "mike@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Manhattan", profilepic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToH_-JClJHLr7EhUgMl2RJ77hsqduvB8pLgaxi3xWQ79nklKLs86dmXxdnJlElJVxIDK4&usqp=CAU", bio: "Recently divorced, I'm not too sure what i'm doing here, but say hi!", age: 36, interested_in: "Women", list_of_matches: [], images: [], list_of_messages:[])
+jeff = User.create!(name: "Jeffrey Michaels", username: "jeff", password: "123", email: "jeff@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Brooklyn", profilepic: "https://thumbs.dreamstime.com/b/handsome-elegant-man-smoke-102339337.jpg", bio: "Young, Handsome, Humble. Where my smart ladies at?", age: 24, interested_in: "Women", list_of_matches: [], images: [], list_of_messages: [])
+
+
+
 
 Match.create(requestor_id: zelie.id, receiver_id: iba.id, status: "accepted", likes: true)
 Match.create(requestor_id: zelie.id, receiver_id: alex.id, status: "accepted", likes: true)
 Match.create(requestor_id: zelie.id, receiver_id: klem.id, status: "accepted", likes: true)
 Match.create(requestor_id: zelie.id, receiver_id: johnny.id, status: "accepted", likes: true)
+
+Match.create(requestor_id: mike.id, receiver_id: zelie.id, status: "pending", likes: true)
+Match.create(requestor_id: zelie.id, receiver_id: jeff.id, status: "pending", likes: true)
+
+
 Match.create(requestor_id: will.id, receiver_id: bridget.id, status: "pending", likes: true)
 Match.create(requestor_id: will.id, receiver_id: scarlett.id, status: "pending", likes: true)
 Match.create(requestor_id: will.id, receiver_id: tunisia.id, status: "pending", likes: true)
 Match.create(requestor_id: will.id, receiver_id: mindy.id, status: "pending", likes: true)
+Match.create(requestor_id: will.id, receiver_id: zelie.id, status: "accepted", likes: true)
+
 Match.create(requestor_id: bridget.id, receiver_id: alex.id, status: "pending", likes: true)
 Match.create(requestor_id: klem.id, receiver_id: tunisia.id, status: "pending", likes: true)
 Match.create(requestor_id: johnny.id, receiver_id: scarlett.id, status: "pending", likes: true)
-Match.create(requestor_id: will.id, receiver_id: zelie.id, status: "pending", likes: true)
+
+
+Match.create(requestor_id: bill.id, receiver_id: zelie.id, status: "pending", likes: true)
+Match.create(requestor_id: mark.id, receiver_id: zelie.id, status: "pending", likes: true)
+Match.create(requestor_id: zelie.id, receiver_id: dean.id, status: "accepted", likes: true)

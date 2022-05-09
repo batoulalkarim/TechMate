@@ -6,11 +6,16 @@ function LoginToggle({setUser}){
     const [showLogin, setShowLogin] = useState(true)
 
     return(
-        <div>
-            <h1>TechMate</h1>
+        <div className="login_toggle_container">
+             <img 
+            src="https://im5.ezgif.com/tmp/ezgif-5-22f155e120.png" 
+            alt="tinder logo" 
+            className="logotoggle"/>
+            <h1 className="tindev">tinDev</h1>
+            <div className="toggle">
             {showLogin ? (
                 <>
-                    <LoginForm setUser={setUser} />
+                    <LoginForm setUser={setUser} className="form"/>
                     <br />
                     <p>
                         Don't have an account? &nbsp;
@@ -21,7 +26,7 @@ function LoginToggle({setUser}){
                 </>
             ): (
                 <>
-                <SignupForm setUser={setUser} />
+                <SignupForm setUser={setUser}  className="form"/>
                 <br />
                 <p>
                     Already have an account? &nbsp;
@@ -31,6 +36,7 @@ function LoginToggle({setUser}){
                 </p>
                 </>
             )}
+            </div>
         </div>
     )
 }

@@ -20,16 +20,20 @@ function RequestsToMe({ currentUser, declineUser, approveUser }) {
 
     return(
         <div className="pendingrequests_container">
-            <h1 className="center">Requests to me</h1>
+            <h1 className="center">People Who Swiped Right On Me 👀</h1>
             {requestsToMe.map((requestToMe, key) => (
                 <>
                 <div key={requestToMe.id} className="pendingrequests_item">
-                    {key} | {requestToMe.requestor_id} | 
-                    {requestToMe.receiver_id} | {requestToMe.status}
+                    <img src={requestToMe.requestor.profilepic} alt="ohno" className="image" />
+                        &nbsp; <strong>{requestToMe.requestor.name}</strong> &nbsp; Requested to match with you 
+                        | {requestToMe.requestor.age} | 
                     </div>
+                    <button className="viewprofile">View Profile</button>
+                    <div className="rr_right">
+                        Request is {requestToMe.status}
                     <button className="pendingrequests_button" onClick={declineUser}>Decline</button>
 					<button className="pendingrequests_button" onClick={approveUser}>Approve</button>
-                    
+                    </div>
                 </>
             ))}
         </div>
