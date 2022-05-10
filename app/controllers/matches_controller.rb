@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-    skip_before_action :authorized, only: [:filter, :index, :show, :show_pending_requests, :show_requests_to_me, :show_accepted_matches, :create]
+    skip_before_action :authorized, only: [:acceptedmatch, :destroy, :index, :show, :show_pending_requests, :show_requests_to_me, :show_accepted_matches, :create]
     
     def index 
         match = Match.all
@@ -16,15 +16,17 @@ class MatchesController < ApplicationController
 
     end
 
-    def filter 
-        matches = Match.where(requestor_id: params[:user_id], status: "pending").or(Match.where(requestor_id: params[:user_id]), status: "accepted")
-        render :json => matches.to_json(:include => [:requestor, :receiver])
-    end
 
     def update 
-        match = Match.where(receiver_id: params[:user_id], status: status, likes: true)
-        puts match 
+        # match = Match.where(receiver_id: params[:id], status: "pending", likes: true)
+        # render json: match
+        match = Match.find_by(matches_params)
+        if match 
+        match.update(status: "accepted")
         render json: match
+        else  
+            render json: {error: "Match not found"}, status: :not_found
+        end
     end
 
     def show 
@@ -37,10 +39,20 @@ class MatchesController < ApplicationController
         render :json => matches.to_json(:include => [:requestor, :receiver]) 
     end
 
+    def acceptedmatch 
+        matches = Match.where(requestor_id: params[:user_id], status: "accepted")
+        render :json => matches.to_json(:include => [:requestor, :receiver]) 
+    end
+
 
     def show_pending_requests
         matches = Match.where(requestor_id: params[:user_id], status: 'pending', likes: true)
-        render :json => matches.to_json(:include => :receiver) 
+        render :json => matches.to_json(:include => [:receiver, :requestor]) 
+    end
+
+    def destroy
+        match = Match.find_by(requestor_id: params[:user_id], status: 'pending', likes: true)
+        match.destroy
     end
 
     def show_requests_to_me

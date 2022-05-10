@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-function AcceptedMatches({ user, currentUser }) {
+function AcceptedMatches({ setSelectedPerson, currentUser }) {
     const [acceptedRequests, setAcceptedRequests] = useState([])
 
     useEffect(() => {
@@ -15,43 +15,21 @@ function AcceptedMatches({ user, currentUser }) {
         })
     }, [currentUser])
 
-    // let navigate = useNavigate();
-    // let history = useHistory();
-    function handleMessage(){
-        // history.push('/chat')
-        console.log('i made it')
-        // navigate(`chat`);
-        // createMessage(user, selectedUser)
-        
+    function handleMessage(currentUser,requestor, receiver){
+        if(currentUser.id === requestor.id){
+            setSelectedPerson(receiver)
+        } else {
+            setSelectedPerson(requestor)
+        }
     }
 
-    // function createMessage(user, selectedUser, content){
-    //     const message = {
-    //         requestor_id: user.id,
-    //         receiver_id: selectedUser,
-    //         content: content,
-    //     }
-    //     const url = '/messages'
-    //     const settings ={
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(message)
-    //     }
-    //     fetch(url, settings)
-    //     .then((res) => {
-    //         console.log(res)
-    //     })
-    //     .catch(console.error)
-    // }
-
-
+   
     return(
         <div className="pendingrequests_container">
             <h1 className="center">🥰 People I've Matched With 🥰</h1>
-            {acceptedRequests.map((request, key) => (
-                <>
+            {acceptedRequests.map((request) => {
+                if(request.requestor_id === currentUser.id){
+                return <>
                 <div key={request.id} className="pendingrequests_item">
                    <img src={request.receiver.profilepic} alt="ohno" className="image" />
                    &nbsp;You've matched with &nbsp; <strong>{request.receiver.name}!</strong>
@@ -60,12 +38,28 @@ function AcceptedMatches({ user, currentUser }) {
                 <button className="viewprofile">View Profile</button>
                 <div className="accepted_right">
                 Request has been {request.status}
-                <Link to={`/chat/${request.receiver.name}`}>
-                <button className="pendingrequests_button">Message {request.receiver.name} </button>
+                <Link to={`/messages/${request.receiver_id}`}>
+                <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request.receiver)}>Message {request.receiver.name} </button>
                 </Link>
                 </div>
                 </>
-            ))}
+                } else if(request.receiver_id === currentUser.id) {
+                    return <>
+                    <div key={request.id} className="pendingrequests_item">
+                   <img src={request.requestor.profilepic} alt="ohno" className="image" />
+                   &nbsp;You've matched with &nbsp; <strong>{request.requestor.name}!</strong>
+                    &nbsp; | {request.requestor.age} | 
+                </div>
+                <button className="viewprofile">View Profile</button>
+                <div className="accepted_right">
+                Request has been {request.status}
+                <Link to={`/messages/${request.requestor_id}`}>
+                <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request.requestor)}>Message {request.requestor.name} </button>
+                </Link>
+                </div>
+                </>
+                }
+            })}
         </div>
 
     )

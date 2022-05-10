@@ -164,6 +164,7 @@
   display: flex;
   align-items: center;
   padding: 20px;
+  padding-bottom: 30px;
 }
 .messageScreen_text {
   margin-left: 10px;
@@ -195,6 +196,7 @@ a {
   display: flex;
   padding: 5px;
   position: fixed;
+  /* margin-top: 50px; */
   bottom: 0;
   width: 100%;
   border-top: 1px solid lightgray;

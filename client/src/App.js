@@ -19,8 +19,10 @@ function App() {
   const [user, setUser] = useState(null)
   const [users, setUsers] = useState([]);
   const [matches, setMatches] = useState([])
+  const [approvedMatch, setApprovedMatch] = useState([])
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
- 
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
   useEffect(() => {
     fetch('/me').then((res) => {
       if(res.ok){
@@ -47,6 +49,7 @@ function App() {
     })
   }, [])
 
+  
 
   function onSwipe(direction, selectedUser){
     if(direction === 'right') {
@@ -55,37 +58,7 @@ function App() {
       createMatch(user, selectedUser, "pending", false)
     }
   }
-
-    function declineUser(){
-        console.log("declined")
-    }
-
-    function approveUser(selectedUser){
-      console.log('approved')
-        updateMatch(user, selectedUser, "approved", true)
-    }
-
-    function updateMatch(user, selectedUser, status, likes){
-      const updatedMatch = {
-        requestor_id: user.id,
-        receiver_id: selectedUser.id, 
-        status: status,
-        likes: likes 
-      }
-      const url ='/matches'
-      const settings ={
-        method: "PUT",
-        headers: {
-          "Content-Type" : "application/json"
-        },
-        body: JSON.stringify(updatedMatch)
-      }
-      fetch(url, settings)
-      .then((res) => {
-        console.log(res)
-      })
-      .catch(console.error)
-    }
+  
 
   function createMatch(user, selectedUser, likes) {
     const match = {
@@ -148,12 +121,12 @@ function App() {
    
     <BrowserRouter>
       <Routes>
-      <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches currentUser={user} user={user} /></>} />
-      <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe currentUser={user} declineUser={declineUser} approveUser={approveUser} /></>} />
-        <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests currentUser={user} /></>} />
+      <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches currentUser={user} user={user} setSelectedPerson={setSelectedPerson}/></>} />
+      <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe currentUser={user}  selectedPerson={selectedPerson} /></>} />
+        <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests currentUser={user} setSelectedPerson={setSelectedPerson}/></>} />
         <Route path="/createaccount" element={<><PersonalHeader setUser={setUser} /><CreateAccount setUser={setUser} currentUser={user}/></>} />
-        <Route path="/chat/:user" element={<><Header backButton="/chat"/><MessagesScreen /></>} />
-        <Route exact path="/chat" element={<><Header backButton="/" /><Messages /></>} />
+        <Route path="/messages/:id" element={<><Header backButton="/messages"/><MessagesScreen selectedPerson={selectedPerson} currentUser={user} setSelectedPerson={setSelectedPerson} /></>} />
+        <Route exact path="/messages" element={<><Header backButton="/" /><Messages currentUser={user} setSelectedPerson={setSelectedPerson} selectedPerson={selectedPerson}/></>} />
         <Route path="/myrequests" element={<><PersonalHeader /><RequestedMatches /></>} />
         <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} /><SwipeButtons swipe={swipe} goback={goback} /></> } />
       </Routes>

@@ -6,25 +6,20 @@ import TinderCard from 'react-tinder-card';
 function TinderCards({onSwipe, currentUser}) {
     const [users, setUsers] = useState([])
     const [matches, setMatches] = useState([])
+    
+    console.log(currentUser)
 
     useEffect(() => {
         fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            const filtered = data.filter((cards) => cards.id !== currentUser.id)
+            const filtered = data.filter((cards) => cards.requestor_id !== currentUser.id)
             setUsers(filtered)
         })
     },[])
 
 
-    useEffect(() => {
-        fetch('http://localhost:3000/matches/filter')
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
-    }, [])
  
      //0.    Task: figure out all users the current user has interacted with and filter the list of people I can swipe on later; see notes below:
 
@@ -57,7 +52,7 @@ function TinderCards({onSwipe, currentUser}) {
             {users.map((user) => {
               return  <TinderCard
                 className="swipe"
-                key={user.name}
+                key={user.id}
                 onSwipe={(direction) => onSwipe(direction, user)}
                 preventSwipe={['up', 'down']}
                 //on right swipe create match and set status to pending

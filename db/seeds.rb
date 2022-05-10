@@ -8,6 +8,7 @@
 
 User.destroy_all 
 Match.destroy_all 
+Message.destroy_all
 
 zelie = User.create!(name: "Zelie Chowaiki", username: "zelie", password: "123", email: "zelie@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Manhattan", profilepic: "https://ca.slack-edge.com/T02MD9XTF-U02RD8WPKK3-a1610838cc34-512", bio: "I've been coding for a few months and found that I need to conenct with someone on an intellectual level, I have to stop dating dumb hot guys!", age: 18, interested_in: "Men", list_of_matches: [], images: [], list_of_messages:[])
 will = User.create!(name: "William Burke", username: "will", password: "123", email: "will@example.com", job: "Software Engineer", birthdate: "08/01/1997", location: "Brooklyn", profilepic: "https://ca.slack-edge.com/T02MD9XTF-U02QAD5MJ7L-7095844c4068-512", bio: "I'm looking for the one- my dj queen that loves to program. Could that be you?", age: 23, interested_in: "Women", list_of_matches: [], images: [], list_of_messages: [])
@@ -52,3 +53,15 @@ Match.create(requestor_id: johnny.id, receiver_id: scarlett.id, status: "pending
 Match.create(requestor_id: bill.id, receiver_id: zelie.id, status: "pending", likes: true)
 Match.create(requestor_id: mark.id, receiver_id: zelie.id, status: "pending", likes: true)
 Match.create(requestor_id: zelie.id, receiver_id: dean.id, status: "accepted", likes: true)
+
+Message.create(requestor_id: iba.id, receiver_id: zelie.id, content: "Hey, You seem really fun 😁")
+Message.create(requestor_id: zelie.id, receiver_id: iba.id, content: "You got that right ;)")
+Message.create(requestor_id: iba.id, receiver_id: zelie.id, content: "So how long have you been in New York?")
+Message.create(requestor_id: zelie.id, receiver_id: iba.id, content: "It's been a few months! I've been attending a Software Engineering bootcamp!")
+Message.create(requestor_id: iba.id, receiver_id: zelie.id, content: "..Please don't tell me it's Flatiron...")
+
+Message.create(requestor_id: alex.id, receiver_id: zelie.id, content: "Hi! I'm so glad we matched!!")
+Message.create(requestor_id: zelie.id, receiver_id: alex.id, content: "Me too! I feel like I've been on this app forever lol")
+Message.create(requestor_id: alex.id, receiver_id: zelie.id, content: "ummm.. kindof a red flag but ok")
+Message.create(requestor_id: alex.id, receiver_id: zelie.id, content: "so what do you do for fun??")
+Message.create(requestor_id: zelie.id, receiver_id: alex.id, content: "...")

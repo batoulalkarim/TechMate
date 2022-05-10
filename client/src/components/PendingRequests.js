@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-function PendingRequests({ currentUser }) {
+function PendingRequests({ currentUser, setSelectedPerson }) {
 	const [pendingRequests, setPendingRequests] = useState([])
 
+	// console.log(currentUser)
 	useEffect(() => {
 		currentUser &&
 			fetch(`/matches/user/${currentUser.id}`)
@@ -12,20 +13,29 @@ function PendingRequests({ currentUser }) {
 					console.log(data)
 					setPendingRequests(data)
 				})
+				.catch(console.error)
 	}, [currentUser])
 
-	function handleRemoveRequest(currentUser){
-		const foundIndex = pendingRequests.findIndex(item => currentUser.id === item.id )
-		if(foundIndex === -1){
-			console.log(currentUser)
-			const copyArray = [...pendingRequests]
-			copyArray.splice(foundIndex, 1);
+// console.log(selectedPerson)
+	function handleRemoveRequest(e, receiver){
+		e.preventDefault()
+		setSelectedPerson(receiver)
+		console.log(receiver)
+		deleteRequest(receiver)
+	}
 
-			setPendingRequests(copyArray)
+	function deleteRequest(receiver) {
+		// event.preventDefault();
+		const foundIndex = pendingRequests.findIndex(item => item.receiver_id === receiver.id);
+		if (foundIndex === -1) {
+			console.log(foundIndex)
 		} else {
-			console.log('oh this went wrong')
+			const copyArray = [...pendingRequests]
+			copyArray.splice(foundIndex, 1)
+			setPendingRequests(copyArray)
 		}
 	}
+	
 
 
 	return (
@@ -42,7 +52,9 @@ function PendingRequests({ currentUser }) {
 					<button className="viewprofile">View Profile</button>
 					<div className="pr_right">
 					Request is {pendingRequest.status}
-					<button className="pendingrequests_button" onClick={handleRemoveRequest}>Cancel Request</button>
+					<button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, pendingRequest.receiver )}>Cancel Request</button>
+
+					{/* <button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, selectedPerson)}>Cancel Request</button> */}
 					</div>
 				</> 
 			))}

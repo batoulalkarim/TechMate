@@ -29,7 +29,7 @@ function Header({ backButton }) {
             alt="tinder logo" 
             className="logo"/>
             </Link>
-            <Link to="/chat">
+            <Link to="/messages">
             <IconButton>
             <ForumIcon fontSize="large"  className="header_icon" />
             </IconButton>

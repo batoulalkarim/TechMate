@@ -31,10 +31,10 @@ class UsersController < ApplicationController
     end
 
     def update 
-        user = User.find_by(params[:user_id])
-        # user.images.attach(params[:images])
+        user = User.find_by(id: params[:id])
+        puts user
         if user
-            user.update(user_params)
+            user.update!(user_params)
             render json: user
         else 
             render json: { error: "User not found" }, status: :not_found
@@ -67,8 +67,12 @@ class UsersController < ApplicationController
         render json: {error: invalid.record.errors}, status: :unprocessable_entity 
     end
 
+    def update_params 
+        params.permit(:job, :birthdate, :age, :location, :bio, :interested_in)
+    end
+
     def user_params
-        params.require(:images).permit([:images, :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in])
+        params.permit(:images, :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in, :list_of_matches, :list_of_messages)
     end
     
     def selected_user_params 

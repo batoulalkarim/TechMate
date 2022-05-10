@@ -1,47 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
 
-function MessagesScreen() {
+function MessagesScreen({currentUser, selectedPerson, setSelectedPerson}) {
     const [input, setInput] = useState('')
-    const [messages, setMessages] = useState([
-        {
-            name: "Mark",
-            image: 'https://m.media-amazon.com/images/M/MV5BMTM0ODU5Nzk2OV5BMl5BanBnXkFtZTcwMzI2ODgyNQ@@._V1_.jpg',
-            message: "whats up "
-        },
-        {
-            name: "Mark",
-            image: 'https://m.media-amazon.com/images/M/MV5BMTM0ODU5Nzk2OV5BMl5BanBnXkFtZTcwMzI2ODgyNQ@@._V1_.jpg',
-            message: "How's it going! "
-        },
-        {
-            message: "whats up "
-        },
-    ])
+    const [messages, setMessages] = useState([])
+    const [errors, setErrors] = useState([]);
+    
+    useEffect(() => {
+        fetch(`http://localhost:3000/messages/${currentUser.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            setMessages(data)
+        })
+        .catch(console.error)
+    }, [])
 
-    const handleSend = e => {
-        e.preventDefault()
-        setMessages([...messages, {message: input}])
+
+    function handleSend(e) {
+        e.preventDefault();
+        createMessage(selectedPerson, currentUser, input);
+        setMessages([...messages, { content: input }]);
         setInput('');
     }
+
+    function createMessage(selectedPerson, currentUser, input){
+        const message = {
+            requestor_id: currentUser.id, 
+            receiver_id: selectedPerson.id,
+            content: input,
+        }
+        const url='/messages'
+        const settings = {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(message)
+        }
+        fetch(url, settings)
+        .then((res) => {
+            if(res.ok){
+            console.log(res)
+            // setSelectedPerson(selectedPerson)
+            // console.log(selectedPerson)
+            setMessages([...messages, {receiver_id: selectedPerson.id , requestor_id: currentUser.id, content: input}])
+            
+            } else {
+                // res.json().then(e => setErrors(Object.entries(e.error).flat()))
+                console.log(console.error)
+            }
+        })
+        .catch(console.error)
+    }
+
     return(
         <div className="messageScreen">
-            <p className="messageScreen_timestamp">YOU MATCHED WITH MARK ON 10/08/20</p>
+            <p className="messageScreen_timestamp">YOU MATCHED WITH {selectedPerson.name.toUpperCase()} ON 10/08/20</p>
             {messages.map((message) => {
-               return message.name ? (
-                <div className ="messageScreen_message">
+                if(message.requestor_id === selectedPerson.id && message.receiver_id === currentUser.id){
+                 return   <>
+                <div className ="messageScreen_message" key={message.id}>
                     <Avatar
                         className="messageScreen_image"
                         alt={message.name}
-                        src={message.image}
+                        src={selectedPerson.profilepic}
                     />
-                    <p className="messageScreen_text">{message.message}</p>
+                    <p className="messageScreen_text">{message.content}</p>
                 </div>
-                ) : (
-                <div className ="messageScreen_message">
-                    <p className="messageScreen_textUser">{message.message}</p>
-                </div>
-                )
+               
+                </>
+                } else if(message.requestor_id === currentUser.id && message.receiver_id === selectedPerson.id) {
+                    return (
+                    <div className ="messageScreen_message">
+                        <p className="messageScreen_textUser">{message.content}</p>
+                    </div>
+                    )
+                }
                 
             })}
           
