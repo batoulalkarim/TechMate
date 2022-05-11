@@ -9,7 +9,7 @@ function CreateAccount({currentUser, setUser}){
     const [job, setJob] = useState('')
     const [birthdate, setBirthdate] = useState('');
     const [location, setLocation] = useState('');
-    const [profilepic, setProfilepic] = useState('');
+    const [profilepic, setProfilepic] = useState(null);
     const [bio, setBio] = useState('');
     const [age, setAge] = useState('');
     const [interested_in, setInterested_in] = useState('');
@@ -54,17 +54,31 @@ function CreateAccount({currentUser, setUser}){
         width: "100"
       }
 
-      const onChangePicture = e => {
-          console.log('picture: ', profilepic)
-          setProfilepic([...profilepic, e.target.files[0]]);
-      }
+    //   const onChangePicture = e => {
+    //       console.log('picture: ', profilepic)
+    //       setProfilepic([...profilepic, e.target.files[0]]);
+    //   }
 return(
     <div>
    <div className="accountdetails_container">
            <div className="accountdetails_left">
        <h3>Update Your Profile Pic</h3>
        <form onSubmit={updateProfile} >
-           <input name="profilepic" type="file" onChange={(e) => onChangePicture(e)}  />
+        {profilepic && (
+            <div>
+                <img alt=" " width={"250px"} src={profilepic} />
+                <br />
+                <button onClick={() => setProfilepic(null)}>Remove</button>
+            </div>
+        )}
+           <input 
+           name="profilepic" 
+           type="file" 
+           onChange={(event) => {
+               console.log(event.target.files[0]);
+               setProfilepic(URL.createObjectURL(event.target.files[0]));
+           }}  />
+
        <br />
        <br />
        <div className="accountdetails_item">

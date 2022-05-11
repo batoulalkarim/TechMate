@@ -33,13 +33,7 @@
   height: 40px;
   object-fit: contain;
 }
-.logotoggle {
-  height: 40px;
-  background-color: #fe3d71;
-  display: flex;
-  margin-top: 20px;
-  
-}
+
 
 .header_icon {
   padding: 20px;
@@ -69,24 +63,72 @@
 
 }
 
-.tindev {
-  padding: 30px;
-  color: white;
+.login_header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  
+}
+
+.logotoggle {
+  height: 40px;
+  display: flex;
+  padding-right: 10px;
 }
 
 .login_toggle_container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  background-color: #fe3d71;
+  background-image: url('https://thumbs.dreamstime.com/b/diverse-women-using-mobile-phones-texting-colorful-backgrounds-collage-row-studio-portraits-millennial-ladies-browsing-207753350.jpg');
   height: 100vh;
-  background-size: cover;
+  position: fixed;
+  background-size:cover;
 }
+
 .toggle {
   display: flex;
   flex-direction: column;
-  padding: 200px;
-  margin-right: auto;
+  /* padding: 200px; */
+  width: 30vh;
   align-items: center;
+  background-color: white;
+  margin-left: 50vh;
+  margin-top: 30vh;
+}
+
+.home_top {
+  padding-bottom: 200px;
+}
+
+.home_bottom {
+  background-color: white;
+}
+
+.home_reviews{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+}
+
+.home_name {
+  padding: 15px;
+}
+
+.home_rev_content {
+  padding: 15px;
+}
+
+.individual_review {
+  border: solid 2px gray;
+  margin: 10px;
+  padding: 5px;
+  height: 20vh;
+  border-radius: 20px;
+  box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3);
+
 }
 
 .swipe {
@@ -337,6 +379,8 @@ a {
   padding: 10px;
   text-align: center;
 }
+
+
 
 
 /* .chats */

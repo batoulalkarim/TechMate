@@ -129,7 +129,7 @@ function App() {
         <Route path="/messages/:id" element={<><Header backButton="/messages"/><MessagesScreen selectedPerson={selectedPerson} currentUser={user} setSelectedPerson={setSelectedPerson} /></>} />
         <Route exact path="/messages" element={<><Header backButton="/" /><Messages currentUser={user} setSelectedPerson={setSelectedPerson} selectedPerson={selectedPerson}/></>} />
         <Route path="/myrequests" element={<><PersonalHeader setUser={setUser}/><RequestedMatches /></>} />
-        <Route path="/myaccount" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><MyAccount /></>} />
+        <Route path="/myaccount" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><MyAccount currentUser={user} /></>} />
         <Route path="/viewprofile/:id" element={<><Header backButton="/myrequests"/><ViewProfile selectedPerson={selectedPerson} currentUser={user} /></>} />
         <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} /><SwipeButtons swipe={swipe} goback={goback} /></> } />
       </Routes>
