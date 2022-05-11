@@ -38,40 +38,40 @@ function SignupForm({setUser}){
 
 
     return(
-        <div>
+        <div className="signup">
             <form onSubmit={handleSignup} className="signupform">
-            <h1>We're Happy You're Here</h1>
+            <h1 className="centertitle">Make the First Move</h1>
             <label>
                Full Name: 
                 <br />
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="text" value={name} className="input" onChange={(e) => setName(e.target.value)} />
             </label>
             <br />
             <br />
             <label>
                 Email:
                 <br />
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" value={email} className="input" onChange={(e) => setEmail(e.target.value)} />
             </label>
             <br />
             <br />
             <label>
                 Username:
                 <br />
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="text" value={username} className="input" onChange={(e) => setUsername(e.target.value)} />
             </label>
             <br />
             <label>
             <br />
                 Password:
                 <br />
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="text" value={password} className="input" onChange={(e) => setPassword(e.target.value)} />
             </label>
             <br />
             <br />
         
-            <button type="submit">
-                Sign up
+            <button type="submit" className="signup_button">
+                SIGN UP
             </button>
           
             </form>

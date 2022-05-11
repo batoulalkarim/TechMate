@@ -66,9 +66,18 @@
 .login_header {
   padding: 10px;
   display: flex;
+  justify-content: space-between;
+  /* flex-direction: row; */
   align-items: center;
   background-color: white;
+  width: 100%;
   
+}
+.header_left {
+  display: flex;
+}
+.login_button {
+  margin-right: 20px;
 }
 
 .logotoggle {
@@ -81,21 +90,41 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url('https://thumbs.dreamstime.com/b/diverse-women-using-mobile-phones-texting-colorful-backgrounds-collage-row-studio-portraits-millennial-ladies-browsing-207753350.jpg');
+  background-image: url('https://img.freepik.com/free-photo/beautiful-asian-woman-uses-smartphone-app-sends-messages-social-media-chat-points-away-copy-space-wears-casual-jumper_273609-48643.jpg?t=st=1652274077~exp=1652274677~hmac=a83c18fa88a33c73a7ed3f4ae739a2b64aeee0849c92db393c189a77c1e34243&w=900');
   height: 100vh;
-  position: fixed;
+  /* position: fixed; */
   background-size:cover;
 }
+.centertitle{
+  padding: 10px;
+}
+
+.signupform {
+  margin-left: 2vh;
+}
+
+.signup {
+  position: fixed;
+  padding: 15px;
+  margin-left: 5vh;
+  border: solid;
+  border-radius: 20px;
+  background-color: white;
+  margin-right: 50px;
+}
+
+
 
 .toggle {
   display: flex;
   flex-direction: column;
-  /* padding: 200px; */
+  padding: 15px;
+  text-align: center;
   width: 30vh;
   align-items: center;
-  background-color: white;
-  margin-left: 50vh;
-  margin-top: 30vh;
+  margin-left: auto;
+  margin-top: 10vh;
+  margin-right: 5vh;
 }
 
 .home_top {
@@ -310,6 +339,25 @@ a {
   flex-direction: column;
   
 }
+
+.input {
+  border-radius: 25px;
+}
+
+.login_button {
+  border: none;
+  background-color: white;
+  color:#fe3d71;
+  font-weight: bolder;
+}
+
+.signup_button {
+  border: none;
+  background-color: white;
+  color: #fe3d71;
+  font-weight: bolder;
+}
+
 .pendingrequests_button {
   /* display:inherit; */
   position: relative;

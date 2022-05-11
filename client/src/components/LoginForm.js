@@ -34,22 +34,25 @@ function LoginForm({setUser}){
 
 
     return(
-        <div>
+        <div className="signup">
             <h1>Welcome Back!</h1>
+            <br />
             <form onSubmit={handleLogin} className="LoginForm">
             <label>
                 Username
                 <br />
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="text" value={username} className="input" onChange={(e) => setUsername(e.target.value)} />
             </label>
+            <br />
             <br />
             <label>
                 Password
                 <br />
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="text" value={password} className="input" onChange={(e) => setPassword(e.target.value)} />
             </label>
             <br />
-            <input type="submit" value="Login" onClick={() => setLogin(true)} />
+            <br />
+            <input type="submit" value="LOGIN" className="signup_button" onClick={() => setLogin(true)} />
             </form>
         </div>
     )

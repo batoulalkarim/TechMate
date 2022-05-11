@@ -3,42 +3,66 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 function LoginToggle({setUser}){
-    const [showLogin, setShowLogin] = useState(true)
+    const [showLogin, setShowLogin] = useState(false)
+    const [showSignUp, setShowSignUp] = useState(false)
+    const [hideTitle, setHideTitle] = useState(false)
 
+    function handleLoginToggle(){
+        setShowLogin(true)
+        setShowSignUp(false)
+        setHideTitle(true)
+    }
+
+    function handleSignUpToggle(){
+        setShowSignUp(true)
+        setShowLogin(false)
+        setHideTitle(true)
+    }
     return(
         <div className="login_toggle_container">
             <div className="home_top">
-            <div className="login_header">
+            <div className="login_header"> 
+            <div className="header_left">
              <img 
             src="https://1000logos.net/wp-content/uploads/2018/07/tinder-emblem-768x432.jpg" 
             alt="tinder logo" 
             className="logotoggle"/>
             <h1 className="tindev">TechMate</h1>
             </div>
+            <div>
+                
+                {showLogin ? (
+                    <button className="login_button" onClick={(e) => handleSignUpToggle(e)}>SIGN UP</button>
+                ): (
+                    <button className="login_button" onClick={(e) => handleLoginToggle(e)}>LOGIN</button>
+                )}
+            </div>
+            </div>
             <div className="toggle">
-            {showLogin ? (
-                <>
-                    <LoginForm setUser={setUser} className="form"/>
-                    <br />
-                    <p>
-                        Don't have an account? &nbsp;
-                        <button onClick={() => setShowLogin(false)}>
-                            Sign Up
-                        </button>
-                    </p>
-                </>
-            ): (
-                <>
-                <SignupForm setUser={setUser}  className="form"/>
-                <br />
-                <p>
-                    Already have an account? &nbsp;
-                    <button onClick={() => setShowLogin(true)}>
-                        Log In
-                    </button>
-                </p>
-                </>
-            )}
+                {hideTitle ? (
+                    console.log("title hidden")
+                ) : (
+                    <div>
+                    <h2>Make The First Move</h2>
+                    <button onClick={(e) => handleSignUpToggle(e)}>Create Account</button>
+                    </div>
+                )}
+                {showLogin ? (
+                    <>
+                        <LoginForm setUser={setUser} className="form" />
+                    </>
+                ) : (
+                    console.log("login set to false")
+                )}
+                {showSignUp ? (
+                    <>
+                        <SignupForm setUser={setUser} className="form" />
+                    </>
+                ) : (
+                    console.log("signup set to false")
+                 
+                )}
+            
             </div>
             </div>
             <div className="home_bottom">
