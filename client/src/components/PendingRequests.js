@@ -54,7 +54,7 @@ function PendingRequests({ currentUser, setSelectedPerson }) {
 			{pendingRequests.map((pendingRequest, key) => (
 				<>
 					<div key={pendingRequest.id} className="pendingrequests_item">
-						<img src={pendingRequest.receiver.profilepic} alt="" className="image"/>
+						<img src={pendingRequest?.receiver?.profilepic} alt="" className="image"/>
 						     &nbsp; You Requested to match with &nbsp; <strong>{pendingRequest.receiver.name}</strong> 
 							&nbsp; | {pendingRequest.receiver.age} | 
 						

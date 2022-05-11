@@ -30,7 +30,6 @@ function LoginToggle({setUser}){
             <h1 className="tindev">TechMate</h1>
             </div>
             <div>
-                
                 {showLogin ? (
                     <button className="login_button" onClick={(e) => handleSignUpToggle(e)}>SIGN UP</button>
                 ): (
@@ -39,12 +38,13 @@ function LoginToggle({setUser}){
             </div>
             </div>
             <div className="toggle">
+                <h1 className="slogan">Make The First Move</h1>
                 {hideTitle ? (
                     console.log("title hidden")
                 ) : (
                     <div>
-                    <h2>Make The First Move</h2>
-                    <button onClick={(e) => handleSignUpToggle(e)}>Create Account</button>
+                    <br />
+                    <button onClick={(e) => handleSignUpToggle(e)} className="createbutton">CREATE ACCOUNT</button>
                     </div>
                 )}
                 {showLogin ? (
@@ -81,10 +81,54 @@ function LoginToggle({setUser}){
                     </div>
                 </div>
                 <div className="social_legal">
-                    <h1>socials and legals go here</h1>
+                    <div>
+                        <p ><strong>LEGAL</strong></p>
+                        <br />
+                        <p className="individual">Privacy</p>
+                        <p className="individual">Terms</p>
+                        <p className="individual">Cookie Policy</p>
+                        <p className="individual">Intellectual Property</p>
+                    </div>
+                    <div>
+                        <p><strong>CAREERS</strong></p>
+                        <br />
+                        <p className="individual">Careers Portal</p>
+                        <p className="individual">Tech Blog</p>
+                    </div>
+                    <div >
+                        <p ><strong>SOCIAL</strong></p>
+                        <br />
+                        <p className="individual">insta</p>
+                        <p className="individual">twitter</p>
+                        <p className="individual">tiktok</p>
+                        <p className="individual">youtube</p>
+                        <p className="individual">facebook</p>
+                    </div>
+                    <div >
+                        <p><strong>FAQ</strong></p>
+                        <br />
+                        <p className="individual">Destinations</p>
+                        <p className="individual">Press Room</p>
+                        <p className="individual">Contact</p>
+                        <p className="individual">Promo Code</p>
+                    </div>
                 </div>
                 <div className="home_bottomtext">
-                    <h1> why u should use techmate</h1>
+                    <h3><strong>GET THE APP!</strong></h3>
+                    <br />
+                    <br />
+                    <p className="bottomtext">Single people, listen up: If you’re looking for love, want to start dating, or just keep it casual, you need to be on TechMate. With over 55 billion matches made, it’s the place to be to meet your next best match. Let’s be real, the dating landscape looks very different today, as most people are meeting online. With TechMate, the world’s most popular free dating app, you have millions of other single people at your fingertips and they’re all ready to meet someone like you. Whether you’re straight or in the LGBTQIA community, TechMate’s here to bring you all the sparks.</p>
+                        <br />
+                    <p className="bottomtext">There really is something for everyone on TechMate. Want to get into a relationship? You got it. Trying to find some new friends? Say no more. New kid on campus and looking to make the most of your college experience? TechMate U’s got you covered. TechMate isn’t your average dating site — it’s the most diverse dating app, where adults of all backgrounds and experiences are invited to make connections, memories, and everything in between.</p>
+                </div>
+                <br />
+                <div className="home_footer">
+                    <div>
+                        <p>FAQ  /  Safety Tips  /  Terms  /  Cookie Policy  /  Privacy Settings</p>
+                    </div>
+                    <div>
+                        <p>Thank you Gerald for accidentally coming up with the name ❤️</p>
+                    </div>
                 </div>
             </div>
         </div>

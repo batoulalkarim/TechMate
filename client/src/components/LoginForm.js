@@ -34,7 +34,7 @@ function LoginForm({setUser}){
 
 
     return(
-        <div className="signup">
+        <div className="login">
             <h1>Welcome Back!</h1>
             <br />
             <form onSubmit={handleLogin} className="LoginForm">
@@ -48,7 +48,7 @@ function LoginForm({setUser}){
             <label>
                 Password
                 <br />
-                <input type="text" value={password} className="input" onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" value={password} className="input" onChange={(e) => setPassword(e.target.value)} />
             </label>
             <br />
             <br />

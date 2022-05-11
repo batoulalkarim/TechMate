@@ -21,30 +21,32 @@ function RequestsToMe({ currentUser, setSelectedPerson }) {
 
    
 
-    function approve(event, requestor){
+    function approve(event, requestor, match_id){
         event.preventDefault();
+        // console.log(event, requestor)
         const foundIndex = requestsToMe.findIndex(item => item.requestor_id === requestor.id);
+        // console.log(foundIndex)
         if (foundIndex === -1) {
             console.log("index is: ", foundIndex)
         } else {
-            const copyArray = [...requestsToMe, 1];
+            const copyArray = [...requestsToMe];
             // console.log(copyArray)
             copyArray.splice(foundIndex, 1);
             setRequestsToMe(copyArray)
-            updateMatch(currentUser, requestor)
-
+            updateMatch(currentUser, requestor, "accepted", true, match_id)
         }
     }
 
     
-    function updateMatch(currentUser, selectedPerson, status, likes){
+    function updateMatch(currentUser, selectedPerson, status, likes, match_id){
+        console.log(currentUser, selectedPerson, status, likes)
         const updatedMatch = {
           requestor_id: selectedPerson.id,
           receiver_id: currentUser.id, 
           status: status,
-          likes: likes 
+          likes: likes,
         }
-        const url ='/matches'
+        const url =`/matches/${match_id}`
         const settings ={
           method: "PUT",
           headers: {
@@ -55,8 +57,7 @@ function RequestsToMe({ currentUser, setSelectedPerson }) {
         fetch(url, settings)
         .then((res) => {
           console.log(res)
-          res.json().then(setRequestsToMe)
-          console.log(setRequestsToMe)
+        //   res.json().then(setRequestsToMe)
         })
         .catch(console.error)
       }
@@ -73,18 +74,19 @@ function RequestsToMe({ currentUser, setSelectedPerson }) {
     return(
         <div className="pendingrequests_container">
             <h1 className="center">People Who Swiped Right On Me 👀</h1>
-            {requestsToMe.map((requestToMe, key) => (
+            {requestsToMe && 
+                requestsToMe?.map((requestToMe, key) => (
                 <>
                 <div key={requestToMe.id} className="pendingrequests_item">
-                    <img src={requestToMe.requestor.profilepic} alt="ohno" className="image" />
-                        &nbsp; <strong>{requestToMe.requestor.name}</strong> &nbsp; Requested to match with you 
-                        | {requestToMe.requestor.age} | 
+                    <img src={requestToMe?.requestor?.profilepic} alt="ohno" className="image" />
+                        &nbsp; <strong>{requestToMe?.requestor?.name}</strong> &nbsp; Requested to match with you 
+                        | {requestToMe?.requestor?.age} | 
                     </div>
-                    <button className="viewprofile" onClick={(e) => handleViewProfile(e, requestToMe.requestor)}>View Profile</button>
+                    <button className="viewprofile" onClick={(e) => handleViewProfile(e, requestToMe?.requestor)}>View Profile</button>
                     <div className="rr_right">
-                        Request is {requestToMe.status}
+                        Request is {requestToMe?.status}
                     <button className="pendingrequests_button" onClick={declineUser}>Decline</button>
-					<button className="pendingrequests_button" onClick={(e) => approve(e, requestToMe.requestor)}>Approve</button>
+					<button className="pendingrequests_button" onClick={(e) => approve(e, requestToMe?.requestor, requestToMe?.id)}>Approve</button>
                     </div>
                 </>
             ))}

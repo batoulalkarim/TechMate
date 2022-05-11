@@ -29,7 +29,7 @@ function PersonalHeader({ setUser }) {
             src="https://1000logos.net/wp-content/uploads/2018/07/tinder-emblem-768x432.jpg" 
             alt="tinder logo" 
             className="logo"/>
-            <Link to="/myrequests">
+            <Link to="/myaccount">
             <IconButton>
                 <PeopleIcon fontSize="large" className="header_icon"  />
             </IconButton>

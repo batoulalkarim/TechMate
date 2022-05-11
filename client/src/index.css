@@ -10,6 +10,7 @@
   align-items: center;
 }
 .image {
+  margin-top: 5px;
   height: 50px;
   width: 50px;
   border-radius: 25px;
@@ -91,21 +92,40 @@
   flex-direction: column;
   justify-content: space-between;
   background-image: url('https://img.freepik.com/free-photo/beautiful-asian-woman-uses-smartphone-app-sends-messages-social-media-chat-points-away-copy-space-wears-casual-jumper_273609-48643.jpg?t=st=1652274077~exp=1652274677~hmac=a83c18fa88a33c73a7ed3f4ae739a2b64aeee0849c92db393c189a77c1e34243&w=900');
-  height: 100vh;
-  /* position: fixed; */
-  background-size:cover;
+  /* background-size: fit-to-screen; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+.home_top{
+  height: 70vh;
+}
+
 .centertitle{
   padding: 10px;
 }
+
+
 
 .signupform {
   margin-left: 2vh;
 }
 
+.stretch {
+  width: 400px;
+}
+
+.slogan {
+  width: 500px;
+  font-size: 50px;
+  margin-top: 30px;
+}
+
 .signup {
-  position: fixed;
   padding: 15px;
+  margin-top: 1vh;
+  padding-left: 45px;
+  padding-right: 45px;
   margin-left: 5vh;
   border: solid;
   border-radius: 20px;
@@ -113,7 +133,40 @@
   margin-right: 50px;
 }
 
+.login {
+  padding: 15px;
+  margin-top: 10vh;
+  padding-left: 45px;
+  padding-right: 45px;
+  margin-left: 5vh;
+  border: solid;
+  border-radius: 20px;
+  background-color: white;
+  margin-right: 50px;
+}
 
+.social_legal {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  border-top: 1px solid lightgray;
+
+}
+
+.individual {
+  padding-bottom: 5px;
+  color: gray;
+}
+
+.createbutton {
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  color: #fe3d71;
+  font-weight: bolder;
+}
 
 .toggle {
   display: flex;
@@ -124,7 +177,7 @@
   align-items: center;
   margin-left: auto;
   margin-top: 10vh;
-  margin-right: 5vh;
+  margin-right: 25vh;
 }
 
 .home_top {
@@ -133,6 +186,31 @@
 
 .home_bottom {
   background-color: white;
+}
+
+.home_footer {
+  border-top: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  color: gray;
+  padding: 15px;
+}
+
+.home_bottomtext {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  letter-spacing: 1;
+  border-top: 1px solid lightgray;
+  padding-top: 15px;
+
+}
+
+.bottomtext {
+  color: gray;
 }
 
 .home_reviews{
@@ -154,7 +232,7 @@
   border: solid 2px gray;
   margin: 10px;
   padding: 5px;
-  height: 20vh;
+  height: 30vh;
   border-radius: 20px;
   box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3);
 
@@ -267,7 +345,6 @@ a {
   display: flex;
   padding: 5px;
   position: fixed;
-  /* margin-top: 50px; */
   bottom: 0;
   width: 100%;
   border-top: 1px solid lightgray;
@@ -290,7 +367,7 @@ a {
 
 .pendingrequests_container {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   overflow: scroll;
   align-items: center;
   flex-direction: column;
@@ -310,6 +387,7 @@ a {
   align-items: center;
 }
 .viewprofile {
+  margin-top: 7px;
   margin-right: auto;
   border: none;
   background-color: white;
@@ -408,6 +486,8 @@ a {
   width: 60vh;
   border-radius: 20px;
   padding: 5px;
+  box-shadow: 0px 10px 52px 0px rgba(0, 0, 0, 0.3) !important;
+  /* background-color: lightgray; */
 }
 
 .vp_title {

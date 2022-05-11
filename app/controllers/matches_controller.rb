@@ -20,9 +20,11 @@ class MatchesController < ApplicationController
     def update 
         # match = Match.where(receiver_id: params[:id], status: "pending", likes: true)
         # render json: match
-        match = Match.find_by(matches_params)
+        # puts matches_params
+        match = Match.find_by(id: params[:id])
+        puts match
         if match 
-        match.update(status: "accepted")
+        match.update(matches_params)
         render json: match
         else  
             render json: {error: "Match not found"}, status: :not_found

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   post "/messages", to: "messages#create"
   delete "/matches/user/:user_id", to: "matches#destroy"
-  put "/matches", to: "matches#update"
+  put "/matches/:id", to: "matches#update"
   post "/login", to: "sessions#show"
   post "/users", to: "users#create"
   delete "/logout", to: "sessions#destroy"

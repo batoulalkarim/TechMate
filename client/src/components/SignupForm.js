@@ -40,7 +40,7 @@ function SignupForm({setUser}){
     return(
         <div className="signup">
             <form onSubmit={handleSignup} className="signupform">
-            <h1 className="centertitle">Make the First Move</h1>
+            <h1 className="centertitle">Create Your Account</h1>
             <label>
                Full Name: 
                 <br />
