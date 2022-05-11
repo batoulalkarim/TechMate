@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+// import Footer from './Footer';
 
 function AcceptedMatches({ setSelectedPerson, currentUser }) {
     const [acceptedRequests, setAcceptedRequests] = useState([])
@@ -23,6 +24,22 @@ function AcceptedMatches({ setSelectedPerson, currentUser }) {
         }
     }
 
+    let navigate = useNavigate()
+
+    function handleFirstClick(e, receiver){
+        e.preventDefault();
+        setSelectedPerson(receiver)
+        console.log(receiver)
+        navigate(`/viewprofile/${receiver.id}`)
+    }
+
+    function handleSecondClick(e, requestor){
+        e.preventDefault()
+        setSelectedPerson(requestor)
+        console.log(requestor)
+        navigate(`/viewprofile/${requestor.id}`)
+    }
+
    
     return(
         <div className="pendingrequests_container">
@@ -35,13 +52,16 @@ function AcceptedMatches({ setSelectedPerson, currentUser }) {
                    &nbsp;You've matched with &nbsp; <strong>{request.receiver.name}!</strong>
                     &nbsp; | {request.receiver.age} | 
                 </div>
-                <button className="viewprofile">View Profile</button>
+               
+                <button className="viewprofile" onClick={(e) => handleFirstClick(e, request.receiver)}>View Profile</button>
+             
                 <div className="accepted_right">
                 Request has been {request.status}
                 <Link to={`/messages/${request.receiver_id}`}>
                 <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request.receiver)}>Message {request.receiver.name} </button>
                 </Link>
                 </div>
+                
                 </>
                 } else if(request.receiver_id === currentUser.id) {
                     return <>
@@ -50,7 +70,7 @@ function AcceptedMatches({ setSelectedPerson, currentUser }) {
                    &nbsp;You've matched with &nbsp; <strong>{request.requestor.name}!</strong>
                     &nbsp; | {request.requestor.age} | 
                 </div>
-                <button className="viewprofile">View Profile</button>
+                <button className="viewprofile" onClick={(e) => handleSecondClick(e, request.requestor)}>View Profile</button>
                 <div className="accepted_right">
                 Request has been {request.status}
                 <Link to={`/messages/${request.requestor_id}`}>

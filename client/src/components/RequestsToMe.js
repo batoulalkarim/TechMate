@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function RequestsToMe({ currentUser, selectedPerson }) {
+function RequestsToMe({ currentUser, setSelectedPerson }) {
     const [requestsToMe, setRequestsToMe] = useState([])
 
     useEffect(() => {
@@ -18,22 +19,7 @@ function RequestsToMe({ currentUser, selectedPerson }) {
         console.log("declined")
     }
 
-    // function approve(event, selectedPerson ){
-    //    event.stopPropagation(); 
-    //    console.log(requestsToMe)
-    //    const foundIndex = requestsToMe.findIndex(item => selectedPerson.id === item.requestor_id) ;
-    //    if(foundIndex === -1) {
-    //        console.log(selectedPerson)
-               
-    //    }
-        
-        //   const foundIndex = requestsToMe.findIndex(item => selectedUser.id === item.requestor_id) ;
-        //   const copyArray = [...requestsToMe]
-        //   copyArray.splice(foundIndex, 1);
-        // console.log(copyArray)
-        //    setRequestsToMe(copyArray)
-        //    updateMatch(currentUser, selectedUser, "accepted", true)
-    // }
+   
 
     function approve(event, requestor){
         event.preventDefault();
@@ -75,6 +61,15 @@ function RequestsToMe({ currentUser, selectedPerson }) {
         .catch(console.error)
       }
 
+      let navigate = useNavigate()
+
+      function handleViewProfile(e, requestor) {
+          e.preventDefault()
+          setSelectedPerson(requestor)
+          console.log(requestor)
+          navigate(`/viewprofile/${requestor.id}`)
+      }
+
     return(
         <div className="pendingrequests_container">
             <h1 className="center">People Who Swiped Right On Me 👀</h1>
@@ -85,7 +80,7 @@ function RequestsToMe({ currentUser, selectedPerson }) {
                         &nbsp; <strong>{requestToMe.requestor.name}</strong> &nbsp; Requested to match with you 
                         | {requestToMe.requestor.age} | 
                     </div>
-                    <button className="viewprofile">View Profile</button>
+                    <button className="viewprofile" onClick={(e) => handleViewProfile(e, requestToMe.requestor)}>View Profile</button>
                     <div className="rr_right">
                         Request is {requestToMe.status}
                     <button className="pendingrequests_button" onClick={declineUser}>Decline</button>

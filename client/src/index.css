@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .header {
@@ -219,19 +219,20 @@ a {
 
 .pendingrequests_container {
   display: flex;
+  height: 100vh;
+  overflow: scroll;
   align-items: center;
   flex-direction: column;
-  position: fixed;
+  position: relative;
   width: 100%;
   padding: 20px;
-
 }
 .center{
   text-align: center;
 }
 .pendingrequests_item {
   flex: 1;
-  padding: 20px;
+  height: 100vh;
   width: 100%;
   border-top: 1px solid lightgray;
   display: flex;
@@ -255,9 +256,10 @@ a {
 .accepted_right {
   display: flex;
   margin-left: auto;
+  align-self: center;
   flex-direction: column;
   margin-top: -30px;
-  margin-right: 6vh;
+  margin-right: 2vh;
 }
 
 .pr_right {
@@ -302,6 +304,38 @@ a {
   padding: 15px;
   font-weight: bolder;
   border-radius: 20px;
+}
+
+.profilepage_container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.profilepage_body {
+  border: solid;
+  height: 80vh;
+  width: 60vh;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.vp_title {
+  text-align: center;
+  padding: 10px;
+}
+
+.vp_image {
+  width: 40vh;
+  height: 45vh;
+  justify-content: center;
+  margin-left: 10vh;
+  border: solid;
+}
+
+.vp_bio {
+  padding: 10px;
+  text-align: center;
 }
 
 

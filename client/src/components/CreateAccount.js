@@ -131,7 +131,7 @@ return(
         </div>
         <div className="accountdetails_right">
              <h1>upload rest of pictures here</h1>
-             <MultiImageInput
+             {/* <MultiImageInput
                 max={4}
                 width={350}
                 height={350}
@@ -140,7 +140,7 @@ return(
                 images={images}
                 setImages={setImages}
                 cropConfig={{ crop, ruleOfThirds: true }}
-                />
+                /> */}
         </div>
    </div>
    

@@ -12,7 +12,8 @@ import RequestedMatches from './components/RequestedMatches';
 import PendingRequests from './components/PendingRequests';
 import AcceptedMatches from './components/AcceptedMatches';
 import RequestsToMe from './components/RequestsToMe';
-
+import ViewProfile from './components/ViewProfile';
+import MyAccount from './components/MyAccount';
 
 
 function App() {
@@ -122,12 +123,14 @@ function App() {
     <BrowserRouter>
       <Routes>
       <Route path="/acceptedmatches" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><AcceptedMatches currentUser={user} user={user} setSelectedPerson={setSelectedPerson}/></>} />
-      <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe currentUser={user}  selectedPerson={selectedPerson} /></>} />
+      <Route path="/requestsreceived" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><RequestsToMe currentUser={user}  setSelectedPerson={setSelectedPerson} /></>} />
         <Route path="/pendingrequests" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><PendingRequests currentUser={user} setSelectedPerson={setSelectedPerson}/></>} />
         <Route path="/createaccount" element={<><PersonalHeader setUser={setUser} /><CreateAccount setUser={setUser} currentUser={user}/></>} />
         <Route path="/messages/:id" element={<><Header backButton="/messages"/><MessagesScreen selectedPerson={selectedPerson} currentUser={user} setSelectedPerson={setSelectedPerson} /></>} />
         <Route exact path="/messages" element={<><Header backButton="/" /><Messages currentUser={user} setSelectedPerson={setSelectedPerson} selectedPerson={selectedPerson}/></>} />
-        <Route path="/myrequests" element={<><PersonalHeader /><RequestedMatches /></>} />
+        <Route path="/myrequests" element={<><PersonalHeader setUser={setUser}/><RequestedMatches /></>} />
+        <Route path="/myaccount" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><MyAccount /></>} />
+        <Route path="/viewprofile/:id" element={<><Header backButton="/myrequests"/><ViewProfile selectedPerson={selectedPerson} currentUser={user} /></>} />
         <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} /><SwipeButtons swipe={swipe} goback={goback} /></> } />
       </Routes>
     </BrowserRouter>

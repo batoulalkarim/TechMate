@@ -7,6 +7,9 @@ function RequestedMatches(){
     return(
         <div>
         <div className="matches_container">
+            <Link to="/myaccount">
+                Preview My Account
+            </Link>
             <Link to="/pendingrequests">
                 Pending Requests
             </Link>
@@ -16,8 +19,7 @@ function RequestedMatches(){
             <Link to="/requestsreceived">
                 My Requests
             </Link>
-        </div>
-        
+        </div>        
          </div>
     )
 }

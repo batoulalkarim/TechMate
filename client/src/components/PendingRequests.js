@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function PendingRequests({ currentUser, setSelectedPerson }) {
 	const [pendingRequests, setPendingRequests] = useState([])
@@ -35,7 +36,16 @@ function PendingRequests({ currentUser, setSelectedPerson }) {
 			setPendingRequests(copyArray)
 		}
 	}
+
+	let navigate = useNavigate()
 	
+
+	function handleViewProfile(e, receiver){
+		e.preventDefault();
+		setSelectedPerson(receiver)
+		console.log(receiver)
+		navigate(`/viewprofile/${receiver.id}`)
+	}
 
 
 	return (
@@ -49,7 +59,7 @@ function PendingRequests({ currentUser, setSelectedPerson }) {
 							&nbsp; | {pendingRequest.receiver.age} | 
 						
 					</div>
-					<button className="viewprofile">View Profile</button>
+					<button className="viewprofile" onClick={(e) => handleViewProfile(e, pendingRequest.receiver)}>View Profile</button>
 					<div className="pr_right">
 					Request is {pendingRequest.status}
 					<button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, pendingRequest.receiver )}>Cancel Request</button>
