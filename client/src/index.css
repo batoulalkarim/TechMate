@@ -22,6 +22,37 @@
   align-items: center;
 }
 
+.previewimg {
+  margin-top: 20px;
+  border: solid;
+  border-radius: 45px;
+}
+
+.remove_button{
+  border: none;
+  padding: 5px;
+  border: 25px;
+  background-color: #fe3d71;
+  color: white;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+input[type=file]::file-selector-button {
+  border: none;
+  padding: 5px;
+  color: white;
+  border-radius: 25px;
+  background-color: #fe3d71;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #f39bb2;
+  border: 2px solid #0c0e0d;
+}
+
+
 .matches_container{
   display: flex;
   justify-content: space-between;
@@ -45,16 +76,26 @@
   width: 600px;
   padding: 20px;
   max-width: 85vh;
-  height: 50vh;
+  height: 45vh;
+  margin-left: 20px;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3)
+  /* box-shadow: 0px 18px 53px 0px rgba(131, 127, 127, 0.3) */
 }
 .accountdetails_container {
   display: flex;
   justify-content: center;
   margin-top: 5vh;
+}
+
+.wholecard {
+  background-color: white;
+  padding-bottom: 50px;
+  padding-top: 20px;
+  box-shadow: 0px 18px 53px 0px rgba(226, 222, 222, 0.3);
+  border-radius: 20px;
+  /* border: solid; */
 }
 
 .cardcontainer {
@@ -240,6 +281,7 @@
 
 .swipe {
   position: absolute;
+
 }
 
 .card > h3 {
@@ -250,11 +292,10 @@
 
 .swipebuttons {
   position: fixed;
-  bottom: 10vh;
+  bottom: 5vh;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
- 
 }
 
 .swipebuttons .MuiIconButton-root {
@@ -465,13 +506,20 @@ a {
 }
 .accountdetails_right {
   margin-left: 10vh;
+  display: flex;
+  flex-direction: column;
 }
 .accountdetails_button {
-  margin-left: 50%;
+  margin-left: 50vh;
   border: none;
   padding: 15px;
   font-weight: bolder;
   border-radius: 20px;
+  transform: 1s;
+}
+
+.accountdetails_button:hover {
+  border: solid .5px black;
 }
 
 .profilepage_container {
@@ -482,8 +530,8 @@ a {
 
 .profilepage_body {
   border: solid;
-  height: 80vh;
-  width: 60vh;
+  height: 90vh;
+  width: 70vh;
   border-radius: 20px;
   padding: 5px;
   box-shadow: 0px 10px 52px 0px rgba(0, 0, 0, 0.3) !important;
@@ -496,196 +544,43 @@ a {
 }
 
 .vp_image {
-  width: 40vh;
-  height: 45vh;
+  width: 57vh;
+  height: 60vh;
   justify-content: center;
-  margin-left: 10vh;
+  margin-left: 6vh;
   border: solid;
 }
 
 .vp_bio {
   padding: 10px;
   text-align: center;
+  border-top: 1px solid lightgray;
+
+}
+
+.name {
+  /* background-color: black; */
+  background-color: white;
+  padding: 3px;
+  padding-left: 15px;
+}
+
+.userbio {
+  background-color: white;
+  width: 650px;
+  text-align: center;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.user_job{
+  margin-right: 3vh;
+  font-weight: bolder;
+}
+
+.con {
+  display: flex;
+  justify-content: space-between;
 }
 
 
-
-
-/* .chats */
-
-/* .userhomebody {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-}
-.center {
-    text-align: center;
-  }
-  .flex-cont {
-    display: flex;
-    text-align: center;
-    column-gap: 6em;
-    justify-content: center;
-  }
-  .image-item {
-    border: solid;
-  }
-  .upload_image_wrapper{
-    flex-direction: row;
-  }
-  .navflex {
-    display: flex;
-  }
-  .userhomebody {
-    display: flex;
-    width: 100%;
-  }
-  .userleft{
-    margin-right: 20%;
-  }
-  .userright{
-    margin-left: 20%;
-  }
-   */
-  /* #root {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    width: 100vw;
-    min-height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(#fff, #999);
-    background: linear-gradient(#e66465, #9198e5);
-  } */
-  
-  /* #root > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  } */
-  
-  /* .potentialcont {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  } */
-  
-  /* .row {
-    flex-direction: row !important;
-  } */
-  
-  /* .row > * {
-    margin: 5px;
-  } */
-  
-  /* h1 {
-    font-family: "Damion", cursive;
-    color: #fff;
-    text-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.3);
-  }
-  
-  h2 {
-    color: #fff;
-  }
-  
-  .swipe {
-    position: absolute;
-  }
-  
-  .cardContainer {
-    width: 90vw;
-    max-width: 260px;
-    height: 300px;
-  }
-  
-  .card {
-    position: relative;
-    background-color: #fff;
-    width: 80vw;
-    margin-top: -400px;
-    max-width: 260px;
-    margin-left: 60px;
-    height: 300px;
-    box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .cardContent {
-    width: 100%;
-    height: 100%;
-  }
-  
-  
-  
-  .card h3 {
-    position: absolute;
-    bottom: 0;
-    margin: 10px;
-    color: #fff;
-  }
-  
-  .infoText {
-    width: 100%;
-    height: 28px;
-    justify-content: center;
-    display: flex;
-    color: #fff;
-    animation-name: popup;
-    animation-duration: 800ms;
-  }
-  
-  .most {
-    flex-direction: column;
-  }
-  .buttons {
-    margin: 20px;
-    margin-top: 500px;
-    display: flex;
-  }
-  
-  .buttons button {
-    flex-shrink: 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-    font-size: 18px;
-    background-color: #9198e5;
-    transition: 200ms;
-    margin: 0 10px;
-    font-weight: bolder;
-    width: 160px;
-    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
-  }
-  
-  .buttons button:hover {
-    transform: scale(1.05);
-  }
-  
-  @keyframes popup {
-    0% {
-      transform: scale(1, 1);
-    }
-    10% {
-      transform: scale(1.1, 1.1);
-    }
-    30% {
-      transform: scale(0.9, 0.9);
-    }
-    50% {
-      transform: scale(1, 1);
-    }
-    57% {
-      transform: scale(1, 1);
-    }
-    64% {
-      transform: scale(1, 1);
-    }
-    100% {
-      transform: scale(1, 1);
-    }
-  } */

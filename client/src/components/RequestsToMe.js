@@ -15,22 +15,28 @@ function RequestsToMe({ currentUser, setSelectedPerson }) {
     }, [currentUser])
 
 
-    function declineUser(){
-        console.log("declined")
+    function declineUser(event, requestor, match_id){
+        event.preventDefault();
+        const foundIndex = requestsToMe.findIndex(item => item.requestor_id === requestor.id);
+        if (foundIndex === -1){
+        } else {
+            console.log(foundIndex)
+            const copyArray = [...requestsToMe];
+            copyArray.splice(foundIndex, 1)
+            setRequestsToMe(copyArray)
+            updateMatch(currentUser, requestor, "pending", false, match_id)
+        }
     }
 
    
 
     function approve(event, requestor, match_id){
         event.preventDefault();
-        // console.log(event, requestor)
         const foundIndex = requestsToMe.findIndex(item => item.requestor_id === requestor.id);
-        // console.log(foundIndex)
         if (foundIndex === -1) {
             console.log("index is: ", foundIndex)
         } else {
             const copyArray = [...requestsToMe];
-            // console.log(copyArray)
             copyArray.splice(foundIndex, 1);
             setRequestsToMe(copyArray)
             updateMatch(currentUser, requestor, "accepted", true, match_id)
@@ -85,7 +91,7 @@ function RequestsToMe({ currentUser, setSelectedPerson }) {
                     <button className="viewprofile" onClick={(e) => handleViewProfile(e, requestToMe?.requestor)}>View Profile</button>
                     <div className="rr_right">
                         Request is {requestToMe?.status}
-                    <button className="pendingrequests_button" onClick={declineUser}>Decline</button>
+                    <button className="pendingrequests_button" onClick={(e) => declineUser(e, requestToMe?.requestor, requestToMe?.id)}>Decline</button>
 					<button className="pendingrequests_button" onClick={(e) => approve(e, requestToMe?.requestor, requestToMe?.id)}>Approve</button>
                     </div>
                 </>

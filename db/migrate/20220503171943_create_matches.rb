@@ -6,6 +6,7 @@ class CreateMatches < ActiveRecord::Migration[6.1]
       t.string :status 
       t.boolean :likes, default: false
    
+      t.timestamps
     end
   end
 end

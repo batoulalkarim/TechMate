@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
+import { Link } from 'react-router-dom';
 
 
 
-function TinderCards({onSwipe, currentUser}) {
+function TinderCards({onSwipe, currentUser, selectedPerson, setSelectedPerson}) {
     const [users, setUsers] = useState([])
-    const [matches, setMatches] = useState([])
     
     console.log(currentUser)
 
@@ -57,11 +57,19 @@ function TinderCards({onSwipe, currentUser}) {
                 preventSwipe={['up', 'down']}
                 //on right swipe create match and set status to pending
                 >
-                    <div 
+                    <div className="wholecard"> 
+                    <div
                     style={{backgroundImage: `url(${user.profilepic})`}}
                     className="card"
                     >
-                        <h3>{user.name}</h3>
+                    </div>
+                    <div className="con">
+                        <h3 className="name">{user.name} &nbsp;  | &nbsp;  {user.age}</h3>
+                        <p className="user_job">{user.job}</p>
+                    </div>
+                    <p><Link to='/viewprofile/'>View Profile</Link></p>
+                        <br />
+                        <p className="userbio">{user.bio}</p>
                     </div>
                 </TinderCard>
 })}

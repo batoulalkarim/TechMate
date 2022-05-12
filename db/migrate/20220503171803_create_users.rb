@@ -12,9 +12,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :bio
       t.integer :age
       t.string :interested_in
-      t.string :list_of_matches
-      t.string :images
-      t.string :list_of_messages
+
     end
   end
 end

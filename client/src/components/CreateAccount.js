@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import UploadImages from './UploadImages';
 import MultiImageInput from 'react-multiple-image-input'
 
 
@@ -54,34 +52,17 @@ function CreateAccount({currentUser, setUser}){
         width: "100"
       }
 
-    //   const onChangePicture = e => {
-    //       console.log('picture: ', profilepic)
-    //       setProfilepic([...profilepic, e.target.files[0]]);
-    //   }
 return(
     <div>
-   <div className="accountdetails_container">
+        <h1 className="center">Keep Your Profile Up To Date</h1>
+        <div className="accountdetails_container">
            <div className="accountdetails_left">
-       <h3>Update Your Profile Pic</h3>
-       <form onSubmit={updateProfile} >
-        {profilepic && (
-            <div>
-                <img alt=" " width={"250px"} src={profilepic} />
-                <br />
-                <button onClick={() => setProfilepic(null)}>Remove</button>
-            </div>
-        )}
-           <input 
-           name="profilepic" 
-           type="file" 
-           onChange={(event) => {
-               console.log(event.target.files[0]);
-               setProfilepic(URL.createObjectURL(event.target.files[0]));
-           }}  />
-
-       <br />
-       <br />
+           <form onSubmit={updateProfile} >
+            <br />
+            <br />
        <div className="accountdetails_item">
+           <h4>Tell us a little about yourself!</h4>
+           <br />
        <label>Birthday
         <br />
        <input className="accountdetails_input" type="date" id="bday" name="birthdate" value={birthdate} max="2004-01-01" onChange={(e) => setBirthdate(e.target.value)} />
@@ -144,24 +125,27 @@ return(
         </form>
         </div>
         <div className="accountdetails_right">
-             <h1>upload rest of pictures here</h1>
-             {/* <MultiImageInput
-                max={4}
-                width={350}
-                height={350}
-                theme="light"
-                value={images}
-                images={images}
-                setImages={setImages}
-                cropConfig={{ crop, ruleOfThirds: true }}
-                /> */}
+        <h3 className="center">Update Your Profile Pic</h3>
+        {profilepic && (
+            <div>
+                <img alt=" " width={"300px"} src={profilepic} className="previewimg"/>
+                <br />
+                <button className="remove_button" onClick={() => setProfilepic(null)}>Remove</button>
+            </div>
+        )}
+        <div className="filebutton_wrapper">
+           <input 
+           name="profilepic" 
+           type="file" 
+           className="file_button"
+           onChange={(event) => {
+               console.log(event.target.files[0]);
+               setProfilepic(URL.createObjectURL(event.target.files[0]));
+           }}  />
+           </div>
         </div>
    </div>
-   
-        {/* <Link to="/"> */}
-            {/* <button className="accountdetails_button" type="submit">Save</button> */}
-        {/* </Link> */}
-       
+
    </div>
 )
   

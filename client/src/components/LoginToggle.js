@@ -127,7 +127,7 @@ function LoginToggle({setUser}){
                         <p>FAQ  /  Safety Tips  /  Terms  /  Cookie Policy  /  Privacy Settings</p>
                     </div>
                     <div>
-                        <p>Thank you Gerald for accidentally coming up with the name ❤️</p>
+                        <p>Thank you Gerald for accidentally coming up with the name 😁</p>
                     </div>
                 </div>
             </div>

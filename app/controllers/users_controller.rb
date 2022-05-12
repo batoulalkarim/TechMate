@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit(:images, :profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in, :list_of_matches, :list_of_messages)
+        params.permit(:profilepic, :username, :password, :name, :email, :id, :job, :birthdate, :location, :age, :bio, :interested_in)
     end
     
     def selected_user_params 
