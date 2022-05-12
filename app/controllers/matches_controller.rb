@@ -16,6 +16,16 @@ class MatchesController < ApplicationController
 
     end
 
+    def destroy
+        match= Match.find_by(id: params[:id])
+        if match 
+            match.destroy
+            head :no_content
+        else
+            render json: { error: "Match not found"}, status: :not_found
+        end
+    end
+
 
     def update 
         # match = Match.where(receiver_id: params[:id], status: "pending", likes: true)
@@ -52,10 +62,7 @@ class MatchesController < ApplicationController
         render :json => matches.to_json(:include => [:receiver, :requestor]) 
     end
 
-    def destroy
-        match = Match.find_by(requestor_id: params[:user_id], status: 'pending', likes: true)
-        match.destroy
-    end
+
 
     def show_requests_to_me
         matches = Match.where(receiver_id: params[:user_id], status: 'pending', likes: true)

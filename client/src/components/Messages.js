@@ -35,24 +35,25 @@ function Messages({ currentUser, setSelectedPerson }) {
     return(
         <div className="chats">
             <h1 className="center">Messages</h1>
-            {acceptedMatches.map((request) => {
-                if(request.requestor_id === currentUser.id){
+            {acceptedMatches &&
+            acceptedMatches?.map((request) => {
+                if(request?.requestor_id === currentUser?.id){
                     return <>
-                    <div className="chat" key={request.id} onClick={(e) => handlefirstClick(e, request.receiver)}>
-                    <Avatar className="chat_image" alt={request.receiver.name} src={request.receiver.profilepic} />
+                    <div className="chat" key={request.id} onClick={(e) => handlefirstClick(e, request?.receiver)}>
+                    <Avatar className="chat_image" alt={request?.receiver.name} src={request?.receiver.profilepic} />
                     <div className="chat_details">
-                        <h2>{request.receiver.name}</h2>
+                        <h2>{request?.receiver.name}</h2>
                       
                     </div>
                     <p className="chat_timestamps">6 Minutes ago</p>
                     </div>
                     </>
-                } else if(request.receiver_id === currentUser.id){
+                } else if(request?.receiver_id === currentUser?.id){
                     return <>
-                    <div className="chat" key={request.id} onClick={(e) => handlesecondClick(e, request.requestor)}>
-                    <Avatar className="chat_image" alt={request.requestor.name} src={request.requestor.profilepic} />
+                    <div className="chat" key={request.id} onClick={(e) => handlesecondClick(e, request?.requestor)}>
+                    <Avatar className="chat_image" alt={request?.requestor.name} src={request?.requestor.profilepic} />
                     <div className="chat_details">
-                        <h2>{request.requestor.name}</h2>
+                        <h2>{request?.requestor.name}</h2>
                       
                     </div>
                     <p className="chat_timestamps">2 Minutes ago</p>

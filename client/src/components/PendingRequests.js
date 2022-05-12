@@ -18,23 +18,32 @@ function PendingRequests({ currentUser, setSelectedPerson }) {
 	}, [currentUser])
 
 // console.log(selectedPerson)
-	function handleRemoveRequest(e, receiver){
+	function handleRemoveRequest(e, receiver, match_id){
 		e.preventDefault()
-		setSelectedPerson(receiver)
-		console.log(receiver)
-		deleteRequest(receiver)
-	}
-
-	function deleteRequest(receiver) {
-		// event.preventDefault();
-		const foundIndex = pendingRequests.findIndex(item => item.receiver_id === receiver.id);
-		if (foundIndex === -1) {
+		// setSelectedPerson(receiver)
+		const foundIndex = pendingRequests.findIndex(item => item.receiver_id === receiver.id)
+		if (foundIndex === -1){
 			console.log(foundIndex)
 		} else {
 			const copyArray = [...pendingRequests]
 			copyArray.splice(foundIndex, 1)
 			setPendingRequests(copyArray)
+			deleteRequest(currentUser, receiver, "pending", false, match_id)
 		}
+		// deleteRequest(receiver)
+	}
+
+	function deleteRequest(currentUser, receiver, status, likes, match_id) {
+		fetch(`http://localhost:3000/matches/${match_id}`, {
+			method: "DELETE",
+		}).then(() => {
+			setPendingRequests(
+				pendingRequests &&
+				pendingRequests?.filter(e => {
+				return(e?.receiver_id !== receiver?.id)
+			}))
+		})
+		.catch(console.error)
 	}
 
 	let navigate = useNavigate()
@@ -51,18 +60,19 @@ function PendingRequests({ currentUser, setSelectedPerson }) {
 	return (
 		<div className="pendingrequests_container">
 			<h1 className="center">People I Swiped Right On 👻</h1>
-			{pendingRequests.map((pendingRequest, key) => (
+			{pendingRequests &&
+			pendingRequests?.map((pendingRequest, key) => (
 				<>
-					<div key={pendingRequest.id} className="pendingrequests_item">
+					<div key={pendingRequest?.id} className="pendingrequests_item">
 						<img src={pendingRequest?.receiver?.profilepic} alt="" className="image"/>
-						     &nbsp; You Requested to match with &nbsp; <strong>{pendingRequest.receiver.name}</strong> 
-							&nbsp; | {pendingRequest.receiver.age} | 
+						     &nbsp; You Requested to match with &nbsp; <strong>{pendingRequest?.receiver.name}</strong> 
+							&nbsp; | {pendingRequest?.receiver.age} | 
 						
 					</div>
-					<button className="viewprofile" onClick={(e) => handleViewProfile(e, pendingRequest.receiver)}>View Profile</button>
+					<button className="viewprofile" onClick={(e) => handleViewProfile(e, pendingRequest?.receiver)}>View Profile</button>
 					<div className="pr_right">
-					Request is {pendingRequest.status}
-					<button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, pendingRequest.receiver )}>Cancel Request</button>
+					Request is {pendingRequest?.status}
+					<button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, pendingRequest?.receiver, pendingRequest?.id )}>Cancel Request</button>
 
 					{/* <button className="pendingrequests_button" onClick={(e) => handleRemoveRequest(e, selectedPerson)}>Cancel Request</button> */}
 					</div>

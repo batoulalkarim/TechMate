@@ -42,10 +42,7 @@ function MessagesScreen({currentUser, selectedPerson, setSelectedPerson}) {
         .then((res) => {
             if(res.ok){
             console.log(res)
-            // setSelectedPerson(selectedPerson)
-            // console.log(selectedPerson)
-            setMessages([...messages, {receiver_id: selectedPerson.id , requestor_id: currentUser.id, content: input}])
-            
+            setMessages([...messages, {receiver_id: selectedPerson.id , requestor_id: currentUser.id, content: input}])         
             } else {
                 // res.json().then(e => setErrors(Object.entries(e.error).flat()))
                 console.log(console.error)
@@ -56,26 +53,29 @@ function MessagesScreen({currentUser, selectedPerson, setSelectedPerson}) {
 
     return(
         <div className="messageScreen">
-            <p className="messageScreen_timestamp">YOU MATCHED WITH {selectedPerson.name.toUpperCase()} ON 05/12/22</p>
-            {messages.map((message) => {
-                if(message.requestor_id === selectedPerson.id && message.receiver_id === currentUser.id){
+            <p className="messageScreen_timestamp">YOU MATCHED WITH {selectedPerson?.name.toUpperCase()} ON 05/12/22</p>
+            {messages &&
+            messages?.map((message) => {
+                if(message?.requestor_id === selectedPerson?.id && message?.receiver_id === currentUser?.id){
                  return   <>
                 <div className ="messageScreen_message" key={message.id}>
                     <Avatar
                         className="messageScreen_image"
-                        alt={message.name}
-                        src={selectedPerson.profilepic}
+                        alt={message?.name}
+                        src={selectedPerson?.profilepic}
                     />
-                    <p className="messageScreen_text">{message.content}</p>
+                    <p className="messageScreen_text">{message?.content}</p>
                 </div>
                
                 </>
-                } else if(message.requestor_id === currentUser.id && message.receiver_id === selectedPerson.id) {
+                } else if (message?.requestor_id === currentUser?.id && message?.receiver_id === selectedPerson?.id) {
                     return (
                     <div className ="messageScreen_message">
-                        <p className="messageScreen_textUser">{message.content}</p>
+                        <p className="messageScreen_textUser">{message?.content}</p>
                     </div>
                     )
+                } else {
+                    return <h1>hello</h1>
                 }
                 
             })}

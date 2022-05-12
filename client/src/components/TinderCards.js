@@ -6,55 +6,56 @@ import { useNavigate } from 'react-router-dom';
 
 function TinderCards({onSwipe, currentUser, selectedPerson, setSelectedPerson}) {
     const [users, setUsers] = useState([])
+    const [matches, setMatches] = useState([])
     
     console.log(currentUser)
+
+    useEffect(() => {
+        fetch('http://localhost:3000/matches')
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data)
+            setMatches(data)
+        })
+    }, [])
 
     useEffect(() => {
         fetch('http://localhost:3000/users')
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            const filtered = data.filter((cards) => cards.requestor_id !== currentUser.id)
+            const filtered = data.filter((cards) => cards.id !== currentUser.id)
             setUsers(filtered)
         })
     },[])
 
-
+  
  
-     //0.    Task: figure out all users the current user has interacted with and filter the list of people I can swipe on later; see notes below:
-
-        // Get all matches I sent out (pending and accepted)
-        // Store them in matches
-    
-        // Then I want to use these matches to understand
-        // which users I've seen / interacted with before 
-        // I want to remove these users from the list of all users
-        // so that users that I see in the app later, are not people
-        // I've interacted with
-    
-        // Accepted: [1, 3]
-        // Pending: [4, 7]
-        // Dislikes: [2, 5]
-        // All users: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        // Users that you want to see on app: [6, 8, 9, 10]
-    
-   //    AND 
-    
-        // Remove me from the master list of users
-       
-        // Filter again here with matches so that i dont see people i've interacted with
-        // Remove people i've interacted with from the master list
-        // const filteredAgain = filtered.filter(())
     let navigate = useNavigate()
 
 
     function handleViewProfile(e, receiver) {
         e.preventDefault()
-        console.log(receiver)
         setSelectedPerson(receiver)
         navigate(`/viewprofile/${receiver.id}`)
     }
 
+    function handleSet(user){
+        setSelectedPerson(user)
+        matches &&
+        matches?.map((match) => {
+            if(match?.requestor_id === selectedPerson?.id && match?.receiver_id === currentUser?.id){
+                const copyArray = [...matches]
+                copyArray.splice(match?.id, 1)
+                setMatches(copyArray)
+            } else {
+                console.log('else hit')
+            }
+        })
+
+    }
+
+  
     return(
         <div >
             <div className="cardcontainer">
@@ -67,7 +68,7 @@ function TinderCards({onSwipe, currentUser, selectedPerson, setSelectedPerson}) 
                 preventSwipe={['up', 'down']}
                 //on right swipe create match and set status to pending
                 >
-                    <div className="wholecard"> 
+                    <div className="wholecard" onMouseEnter={() => handleSet(user)}> 
                     <div
                     style={{backgroundImage: `url(${user?.profilepic})`}}
                     className="card"

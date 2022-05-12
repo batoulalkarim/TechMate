@@ -54,9 +54,10 @@ function App() {
 
   function onSwipe(direction, selectedUser){
     if(direction === 'right') {
-      createMatch(user, selectedUser, "declined", true)
+      createMatch(user, selectedUser, "declined", false)
     } else if (direction === 'left') {
-      createMatch(user, selectedUser, "pending", false)
+      // createMatch(user, selectedUser, "pending", false)
+      console.log('you swiped left')
     }
   }
   
@@ -83,37 +84,9 @@ function App() {
     .catch(console.error)
   }
   
-  const currentIndexRef = useRef(currentIndex)
 
-  const childRefs = useMemo(
-    () =>
-      Array(users.length)
-        .fill(0)
-        .map((i) => React.createRef()),
-    []
-  )
 
-  const updateCurrentIndex = (val) => {
-    setCurrentIndex(val)
-    currentIndexRef.current = val
-  }
-
-  const canGoBack = currentIndex < users.length - 1
-
-  const canSwipe = currentIndex >= 0
-
-  const swipe = async (direction) => {
-    // console.log('swipe')
-    if (canSwipe && currentIndex < users.length) {
-      await childRefs[currentIndex].current.swipe(direction) // Swipe the card!
-    }
-  }
-  const goback = async () => {
-    if (!canGoBack) return
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
-  }
+ 
 
   if(!user) return <BrowserRouter><LoginToggle setUser={setUser} /></BrowserRouter>
 
@@ -131,7 +104,7 @@ function App() {
         <Route path="/myrequests" element={<><PersonalHeader setUser={setUser}/><RequestedMatches /></>} />
         <Route path="/myaccount" element={<><PersonalHeader setUser={setUser} /><RequestedMatches /><MyAccount currentUser={user} /></>} />
         <Route path="/viewprofile/:id" element={<><Header backButton="/"/><ViewProfile selectedPerson={selectedPerson} currentUser={user} /></>} />
-        <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} selectedPerson={selectedPerson} setSelectedPerson={setSelectedPerson} /><SwipeButtons swipe={swipe} goback={goback} /></> } />
+        <Route exact path="/" element={<><Header /><TinderCards currentUser={user} onSwipe={onSwipe} selectedPerson={selectedPerson} setSelectedPerson={setSelectedPerson} /><SwipeButtons  /></> } />
       </Routes>
     </BrowserRouter>
     </>

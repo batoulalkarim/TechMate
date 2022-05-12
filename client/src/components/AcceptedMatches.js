@@ -46,35 +46,36 @@ function AcceptedMatches({ setSelectedPerson, currentUser }) {
     return(
         <div className="pendingrequests_container">
             <h1 className="center">🥰 People I've Matched With 🥰</h1>
-            {acceptedRequests.map((request) => {
-                if(request.requestor_id === currentUser.id){
+            {acceptedRequests &&
+            acceptedRequests?.map((request) => {
+                if(request?.requestor_id === currentUser?.id){
                 return <>
                 <div key={request.id} className="pendingrequests_item">
-                   <img src={request.receiver.profilepic} alt="ohno" className="image" />
-                   &nbsp;You've matched with &nbsp; <strong>{request.receiver.name}!</strong>
-                    &nbsp; | {request.receiver.age} | 
+                   <img src={request?.receiver.profilepic} alt="ohno" className="image" />
+                   &nbsp;You've matched with &nbsp; <strong>{request?.receiver.name}!</strong>
+                    &nbsp; | {request?.receiver.age} | 
                 </div>
                
-                <button className="viewprofile" onClick={(e) => handleFirstClick(e, request.receiver)}>View Profile</button>
+                <button className="viewprofile" onClick={(e) => handleFirstClick(e, request?.receiver)}>View Profile</button>
              
                 <div className="accepted_right">
-                Request has been {request.status}
+                Request has been {request?.status}
                 <Link to={`/messages/${request.receiver_id}`}>
-                <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request.receiver)}>Message {request.receiver.name} </button>
+                <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request?.receiver)}>Message {request.receiver.name} </button>
                 </Link>
                 </div>
                 
                 </>
-                } else if(request.receiver_id === currentUser.id) {
+                } else if(request?.receiver_id === currentUser.id) {
                     return <>
                     <div key={request.id} className="pendingrequests_item">
-                   <img src={request.requestor.profilepic} alt="ohno" className="image" />
-                   &nbsp;You've matched with &nbsp; <strong>{request.requestor.name}!</strong>
-                    &nbsp; | {request.requestor.age} | 
+                   <img src={request?.requestor.profilepic} alt="ohno" className="image" />
+                   &nbsp;You've matched with &nbsp; <strong>{request?.requestor.name}!</strong>
+                    &nbsp; | {request?.requestor.age} | 
                 </div>
                 <button className="viewprofile" onClick={(e) => handleSecondClick(e, request.requestor)}>View Profile</button>
                 <div className="accepted_right">
-                Request has been {request.status}
+                Request has been {request?.status}
                 <Link to={`/messages/${request.requestor_id}`}>
                 <button className="pendingrequests_button" onClick={(e) => handleMessage(e, request.requestor)}>Message {request.requestor.name} </button>
                 </Link>

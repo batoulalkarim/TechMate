@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   
   resources :users, only: [:index, :show, :create, :update, :destroy]
-  resources :matches, only: [:index, :show, :create, :show_pending_requests, :show_requests_to_me, :show_accepted_matches, :update, :destroy, :acceptedmatch]
+  resources :matches, only: [:index, :show, :create, :destroy, :show_pending_requests, :show_requests_to_me, :show_accepted_matches, :update, :destroy, :acceptedmatch]
   resources :messages, only: [:create, :index, :show]
 
 
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index]
   end 
 
+  delete "/matches/:id", to: "matches#delete"
   post "/messages", to: "messages#create"
   delete "/matches/user/:user_id", to: "matches#destroy"
   put "/matches/:id", to: "matches#update"
