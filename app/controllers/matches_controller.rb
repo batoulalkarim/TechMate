@@ -2,8 +2,8 @@ class MatchesController < ApplicationController
     skip_before_action :authorized, only: [:acceptedmatch, :destroy, :index, :show, :show_pending_requests, :show_requests_to_me, :show_accepted_matches, :create]
     
     def index 
-        match = Match.all
-        render json: match # , include: [:requestor, :receiver] 
+        matches = Match.all
+        render :json => matches.to_json(:include => [:requestor, :receiver]) 
     end
 
     def create 

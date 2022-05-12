@@ -56,7 +56,7 @@ function MessagesScreen({currentUser, selectedPerson, setSelectedPerson}) {
 
     return(
         <div className="messageScreen">
-            <p className="messageScreen_timestamp">YOU MATCHED WITH {selectedPerson.name.toUpperCase()} ON 10/08/20</p>
+            <p className="messageScreen_timestamp">YOU MATCHED WITH {selectedPerson.name.toUpperCase()} ON 05/12/22</p>
             {messages.map((message) => {
                 if(message.requestor_id === selectedPerson.id && message.receiver_id === currentUser.id){
                  return   <>

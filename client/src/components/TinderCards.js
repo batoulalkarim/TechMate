@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -45,11 +45,21 @@ function TinderCards({onSwipe, currentUser, selectedPerson, setSelectedPerson}) 
         // Filter again here with matches so that i dont see people i've interacted with
         // Remove people i've interacted with from the master list
         // const filteredAgain = filtered.filter(())
+    let navigate = useNavigate()
+
+
+    function handleViewProfile(e, receiver) {
+        e.preventDefault()
+        console.log(receiver)
+        setSelectedPerson(receiver)
+        navigate(`/viewprofile/${receiver.id}`)
+    }
 
     return(
         <div >
             <div className="cardcontainer">
-            {users.map((user) => {
+            {users &&
+            users?.map((user) => {
               return  <TinderCard
                 className="swipe"
                 key={user.id}
@@ -59,17 +69,16 @@ function TinderCards({onSwipe, currentUser, selectedPerson, setSelectedPerson}) 
                 >
                     <div className="wholecard"> 
                     <div
-                    style={{backgroundImage: `url(${user.profilepic})`}}
+                    style={{backgroundImage: `url(${user?.profilepic})`}}
                     className="card"
                     >
                     </div>
                     <div className="con">
-                        <h3 className="name">{user.name} &nbsp;  | &nbsp;  {user.age}</h3>
-                        <p className="user_job">{user.job}</p>
+                        <h3 className="name">{user?.name} &nbsp;  | &nbsp;  {user?.age}</h3>
+                        <p className="user_job">{user?.job}</p>
                     </div>
-                    <p><Link to='/viewprofile/'>View Profile</Link></p>
+                    <button className="vpbutton" onClick={(e) => handleViewProfile(e, user)}>View Profile</button>
                         <br />
-                        <p className="userbio">{user.bio}</p>
                     </div>
                 </TinderCard>
 })}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MultiImageInput from 'react-multiple-image-input'
-
+import { Link } from 'react-router-dom';
 
 
 function CreateAccount({currentUser, setUser}){
@@ -120,8 +119,9 @@ return(
         
         <br />
         <br />
+        <Link to='/'>
         <button className="accountdetails_button" type="submit">Save</button>
-
+        </Link>
         </form>
         </div>
         <div className="accountdetails_right">

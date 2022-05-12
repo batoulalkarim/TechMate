@@ -16,6 +16,8 @@ function AcceptedMatches({ setSelectedPerson, currentUser }) {
         })
     }, [currentUser])
 
+    console.log(currentUser)
+
     function handleMessage(currentUser,requestor, receiver){
         if(currentUser.id === requestor.id){
             setSelectedPerson(receiver)

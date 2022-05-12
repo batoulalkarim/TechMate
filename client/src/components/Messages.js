@@ -34,6 +34,7 @@ function Messages({ currentUser, setSelectedPerson }) {
 
     return(
         <div className="chats">
+            <h1 className="center">Messages</h1>
             {acceptedMatches.map((request) => {
                 if(request.requestor_id === currentUser.id){
                     return <>
@@ -43,7 +44,7 @@ function Messages({ currentUser, setSelectedPerson }) {
                         <h2>{request.receiver.name}</h2>
                       
                     </div>
-                    <p className="chat_timestamps">10 Minutes ago</p>
+                    <p className="chat_timestamps">6 Minutes ago</p>
                     </div>
                     </>
                 } else if(request.receiver_id === currentUser.id){
