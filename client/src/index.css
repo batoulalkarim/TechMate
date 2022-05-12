@@ -118,6 +118,8 @@ input[type=file]::file-selector-button:hover {
 }
 .header_left {
   display: flex;
+  position: relative;
+
 }
 .login_button {
   margin-right: 20px;
@@ -133,11 +135,12 @@ input[type=file]::file-selector-button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url('https://img.freepik.com/free-photo/beautiful-asian-woman-uses-smartphone-app-sends-messages-social-media-chat-points-away-copy-space-wears-casual-jumper_273609-48643.jpg?t=st=1652274077~exp=1652274677~hmac=a83c18fa88a33c73a7ed3f4ae739a2b64aeee0849c92db393c189a77c1e34243&w=900');
+  background-image: url('https://images.unsplash.com/photo-1579208575657-c595a05383b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NXw5ODQyMTkzfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60');
+  /* background-image: url('https://images.unsplash.com/photo-1517840933437-c41356892b35?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGVvcGxlJTIwbGF1Z2hpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60'); */
   /* background-size: fit-to-screen; */
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top 10px center;
 }
 .home_top{
   height: 70vh;
@@ -147,7 +150,9 @@ input[type=file]::file-selector-button:hover {
   padding: 10px;
 }
 
-
+.logotoggle{
+  top: 10vh;
+}
 
 .signupform {
   margin-left: 2vh;
@@ -160,7 +165,8 @@ input[type=file]::file-selector-button:hover {
 .slogan {
   width: 500px;
   font-size: 50px;
-  margin-top: 30px;
+  margin-top: 10px;
+  /* color: white; */
 }
 
 .signup {

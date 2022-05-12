@@ -75,7 +75,7 @@ function MessagesScreen({currentUser, selectedPerson, setSelectedPerson}) {
                     </div>
                     )
                 } else {
-                    return <h1>hello</h1>
+                    return console.log("hello")
                 }
                 
             })}
